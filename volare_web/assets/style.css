@@ -1,0 +1,226 @@
+/*
+== ------------------------------------------------------------------- ==
+== @@ Reset Styles
+== ------------------------------------------------------------------- ==
+*/
+/* Eric Meyer's Reset Reloaded */
+/* http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Media Queries
+== ------------------------------------------------------------------- ==
+*/
+/*
+== ------------------------------------------------------------------- ==
+== @@ Framework
+== ------------------------------------------------------------------- ==
+*/
+/*
+.clearfix {
+
+	display: block;
+	zoom: 1;
+
+	&:after {
+		content: " ";
+		display: block;
+		font-size: 0;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+
+}
+*/
+img {
+  max-width: 100%;
+  height: auto;
+}
+.no_padding {
+  padding: 0 !important;
+}
+.no_margin {
+  margin: 0 !important;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Chrome Inspector
+== ------------------------------------------------------------------- ==
+*/
+body .__web-inspector-hide-shortcut__,
+body .__web-inspector-hide-shortcut__ * {
+  visibility: visible !important;
+  display: none !important;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ General (general.less)
+== ------------------------------------------------------------------- ==
+*/
+.main_content {
+  padding-top: 30px;
+}
+.page_canvas {
+  display: block;
+  zoom: 1;
+  margin: 0 auto;
+  height: 100%;
+  width: 960px;
+}
+.page_canvas:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+@media only screen and (max-width:999px) {
+  .page_canvas {
+    width: 85%;
+  }
+}
+@media only screen and (max-width:767px) {
+  .page_canvas {
+    width: 85%;
+  }
+}
+.poll_list article {
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding: 10px;
+  display: block;
+  zoom: 1;
+}
+.poll_list article:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.poll_list article div {
+  float: left;
+  padding: 0 5px;
+}
+.poll_list article div.title {
+  width: 80%;
+}
+.poll_list article div.link {
+  width: 20%;
+  text-align: right;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Typography (text.less)
+== ------------------------------------------------------------------- ==
+*/
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: center;
+}

@@ -1,0 +1,64 @@
+/*
+== ------------------------------------------------------------------- ==
+== @@ Media Queries
+== ------------------------------------------------------------------- ==
+*/
+
+@tv:	 			~"only screen and (min-width:1300px)";
+@desktop: 			~"only screen and (min-width:1000px) and (max-width:1299px)";
+@mobile:			~"only screen and (max-width:999px)";
+@tablet:			~"only screen and (min-width:768px) and (max-width:999px)";
+@phone:				~"only screen and (max-width:767px)";
+@phone_landscape: 	~"only screen and (min-width:480px) and (max-width:767px)";
+@phone_portrait: 	~"only screen and (max-width:479px)";
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Framework
+== ------------------------------------------------------------------- ==
+*/
+
+/*
+.clearfix {
+
+	display: block;
+	zoom: 1;
+
+	&:after {
+		content: " ";
+		display: block;
+		font-size: 0;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+
+}
+*/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.no_padding {
+	padding: 0 !important;
+}
+
+.no_margin {
+	margin: 0 !important;
+}
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Chrome Inspector
+== ------------------------------------------------------------------- ==
+*/
+
+body .__web-inspector-hide-shortcut__,
+body .__web-inspector-hide-shortcut__ * {
+	visibility: visible !important;
+	display: none !important;
+}

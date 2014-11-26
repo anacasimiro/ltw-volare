@@ -1,0 +1,53 @@
+/*
+== ------------------------------------------------------------------- ==
+== @@ General (general.less)
+== ------------------------------------------------------------------- ==
+*/
+
+
+.main_content {
+	
+	padding-top: 30px;
+	
+}
+
+.page_canvas {
+	
+	.clearfix();
+	margin: 0 auto;
+	height: 100%;
+	width: 960px;
+	
+	@media @mobile {
+		width: 85%;
+	}
+	
+	@media @phone {
+		width: 85%;
+	}
+
+}
+
+.poll_list {
+	
+	
+	article {
+	
+		border: 1px solid #ddd;
+		margin-bottom: 20px;
+		padding: 10px;
+		.clearfix();
+		
+		div {
+
+			float: left;
+			padding: 0 5px;
+			
+			&.title { width: 80%; }
+			&.link { width: 20%; text-align: right; }
+					
+		}
+		
+	}
+
+}
