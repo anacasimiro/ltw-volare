@@ -1,6 +1,6 @@
 <?php
 
-	include_once('logic/framework.php');
+	include_once('../logic/framework.php');
 
 	$id = $_POST['id'];
 	$title = $_POST['title'];
@@ -15,6 +15,6 @@
 		die($e->getMessage());
 	}
 
-	header('Location: edit_poll.php?id=' . $_POST['id']);
+	header('Location: ' . $_BASE_URL . 'edit_poll.php?id=' . $_POST['id']);
 
 ?>

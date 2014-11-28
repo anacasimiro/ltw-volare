@@ -1,0 +1,220 @@
+/*
+== ------------------------------------------------------------------- ==
+== @@ Login page (login.less)
+== ------------------------------------------------------------------- ==
+*/
+
+
+.splash_screen {
+	
+	font-family: "OratorStd";
+	height: 100%;
+
+	.logo {
+	
+		background: url('images/logo.jpg');
+		background-size: cover;
+		height: 160px;
+		width:  160px;
+		margin: 0 auto 50px auto;
+	
+	}
+	
+	h1 {
+		
+		margin-bottom: 25px;
+		text-align: center;
+		text-transform: lowercase;
+		line-height: 1.5;
+		
+		@media @phone_portrait {
+			//font-size: 1em;
+			margin-bottom: 30px;
+		}
+		
+	}
+	
+	p {
+		
+		display: block;
+		font-size: 1.4em;
+		margin-bottom: 22px;
+		text-align: center;
+		text-transform: lowercase;
+		
+	}
+	
+	.signup {
+		
+		margin-bottom: 60px;
+		
+		a {
+			height: 30px;
+			background: none;
+			font-family: "Lucida Grande", Arial, Verdana, sans-serif;
+			margin: 0 auto;
+			display: block;
+			width: 60px;
+			text-transform: uppercase;
+			text-decoration: none;
+			text-align: center;
+			font-weight: bold;
+			color: #666;
+			font-size: 0.9em;
+			padding-top: 8px;
+			
+			&:hover {
+				color: #222;
+				border-color: #666;
+			}
+			
+		}
+		
+	}
+	
+	.more {
+		
+		text-align: center;
+		margin: 0 auto;
+		width: 300px;
+		font-size: 1.4em;
+		text-transform: lowercase;
+		
+		p {
+			margin-bottom: 0;
+		}
+		
+		a {
+			background: url('images/arrow_down.png');
+			display: block;
+			height: 64px;
+			width: 64px;
+			margin: 0 auto;
+			.opacity(0.5);
+			.transition(all 0.2s ease);
+			
+			&:hover {
+				
+				.opacity(1);
+				
+			}
+			
+		}
+	}
+	
+}
+
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Login and Signup Forms (login.less)
+== ------------------------------------------------------------------- ==
+*/
+
+.splash_screen .login-form, .splash_screen .signup-form {
+		
+		width: 400px;
+		margin: 0 auto 0px auto;
+		.clearfix();
+		
+		
+		@media @phone_portrait {
+			width: 100%;
+		}
+		
+		input[name=username], input[name=password], input[name=confirm-password] {
+			.appearance(none);
+			color: #666;
+			font-size: 1em;
+			height: 40px;
+			width: 160px;
+			border: 2px solid #eee;
+			.border-radius(5px);
+			padding: 0 10px;
+			display: block;
+			float: left;
+			margin-bottom: 20px;
+			margin-right: 20px;
+			
+			&:focus {
+				 
+				border-color: #666;
+					
+			}
+			
+			@media @phone_portrait {
+				float: none;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+		}
+		
+		input[type=submit] {
+			.appearance(none);
+			border: 2px solid #eee;
+			.border-radius(5px);
+			height: 40px;
+			background: url('images/checked.png') center center no-repeat;
+			margin: 0 auto;
+			display: block;
+			width: 40px;
+			font-weight: bold;
+			cursor: pointer;
+			float: left;
+			margin-bottom: 20px;
+			
+			&:hover, &:focus {
+				border-color: #666;
+			}
+			
+			@media @phone_portrait {
+				
+				float: none;
+				width: 160px;
+				
+			}
+			
+		}
+		
+	}
+
+.splash_screen .login-form {
+	
+	//display: none;
+	
+}
+
+.splash_screen .signup-form {
+	
+	display: none;
+	
+	input[name=username],
+	input[name=password],
+	input[name=confirm-password],
+	input[type=submit] {
+		
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+		width: 160px;
+		
+	}
+	
+}
+
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Poll Examples (login.less)
+== ------------------------------------------------------------------- ==
+*/
+
+#poll_examples {
+	
+	min-height: 100%;
+	padding-top: 40px;
+	
+}

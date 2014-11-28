@@ -1,6 +1,23 @@
 <?php
 
+	// Include framework
+	
 	include_once('logic/framework.php');
+	
+	
+	// Check session
+	
+	session_start();
+	
+	if( !isset($_SESSION['id']) || $_SESSION['id'] === '' ) {
+	
+		header("location:" . $_BASE_URL . "login.php");
+	
+	}
+	
+	Fb::log( 'Session is registered for user with id = ' . $_SESSION['id'] );
+	
+	
 
 	$stmt = $dbh->prepare('SELECT * FROM polls ');
 	$stmt->execute();
@@ -11,7 +28,7 @@
 
 <?php include_once($_BASE_DIR . 'templates/header.php'); ?>
 
-<h1>My Polls</h1>
+<h2>My Polls</h2>
 
 <section class="poll_list">
 
@@ -29,20 +46,25 @@
 				
 			</div>
 			
-			<ul class="poll_options">
-				
+			<form action="" method="post">
+					
 				<?php foreach ($poll->getOptions() as $option) : ?>
 				
-					<li><?php echo $option['title'] ?></li>
+					<label for="option_<?php echo $option['id'] ?>"><?php echo $option['title'] ?></label>
+					<input id="option_<?php echo $option['id'] ?>" name="vote" value="<?php echo $option['id'] ?>" type="radio">
 									
 				<?php endforeach; ?>
 				
-			</ul>
+				<input type="submit" value="Vote">
+			
+			</form>
 
 		</article>
 
 	<?php endforeach; ?>
 
 </section>
+
+<a href="<?php echo $_BASE_URL ?>actions/logout.php">Logout</a>
 
 <?php include_once($_BASE_DIR . 'templates/footer.php'); ?>

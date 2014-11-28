@@ -5,20 +5,18 @@
 
 INSERT INTO "polls" (
 
-	"id",
-	"title",
-	"ownerId",
-	"imageFormat",
-	"isPublic",
-	"isActive",
-	"notifyOwner",
-	"creationDate",
-	"startDate",
-	"endDate"
+	title,
+	ownerId,
+	image,
+	isPublic,
+	isActive,
+	notifyOwner,
+	creationDate,
+	startDate,
+	endDate
 
 ) VALUES (
 
-	NULL,
 	"O que gostas mais?",
 	"1",
 	NULL,
@@ -34,20 +32,18 @@ INSERT INTO "polls" (
 
 INSERT INTO "polls" (
 
-	"id",
-	"title",
-	"ownerId",
-	"imageFormat",
-	"isPublic",
-	"isActive",
-	"notifyOwner",
-	"creationDate",
-	"startDate",
-	"endDate"
+	title,
+	ownerId,
+	image,
+	isPublic,
+	isActive,
+	notifyOwner,
+	creationDate,
+	startDate,
+	endDate
 
 ) VALUES (
 
-	NULL,
 	"Qual deve ser o conteúdo da poll 2?",
 	"1",
 	NULL,
@@ -63,20 +59,18 @@ INSERT INTO "polls" (
 
 INSERT INTO "polls" (
 
-	"id",
-	"title",
-	"ownerId",
-	"imageFormat",
-	"isPublic",
-	"isActive",
-	"notifyOwner",
-	"creationDate",
-	"startDate",
-	"endDate"
+	title,
+	ownerId,
+	image,
+	isPublic,
+	isActive,
+	notifyOwner,
+	creationDate,
+	startDate,
+	endDate
 
 ) VALUES (
 
-	NULL,
 	"Qual deve ser o conteúdo da poll 3?",
 	"1",
 	NULL,
@@ -92,20 +86,18 @@ INSERT INTO "polls" (
 
 INSERT INTO "polls" (
 
-	"id",
-	"title",
-	"ownerId",
-	"imageFormat",
-	"isPublic",
-	"isActive",
-	"notifyOwner",
-	"creationDate",
-	"startDate",
-	"endDate"
+	title,
+	ownerId,
+	image,
+	isPublic,
+	isActive,
+	notifyOwner,
+	creationDate,
+	startDate,
+	endDate
 
 ) VALUES (
 
-	NULL,
 	"Qual deve ser o conteúdo da poll 4?",
 	"1",
 	NULL,

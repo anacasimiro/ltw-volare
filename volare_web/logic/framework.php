@@ -1,8 +1,9 @@
 <?php
 
 $_BASE_DIR = '/Users/Joao/FEUP/LTW/Volare/volare_web/';
-$_BASE_URL = 'http://volare:8888/';
-define('database_path', 'data/database.sqlite');
+$_BASE_URL = 'http://192.168.1.69:8888/';
+$_DB_PATH  = 'data/database.sqlite';
+
 
 /*
 == ------------------------------------------------------------------- ==
@@ -23,7 +24,7 @@ ob_start();
 
 try {
 
-	$dbh = new PDO('sqlite:' . database_path);
+	$dbh = new PDO('sqlite:' . $_BASE_DIR . $_DB_PATH);
 	$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

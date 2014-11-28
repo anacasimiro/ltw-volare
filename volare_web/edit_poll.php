@@ -1,30 +1,54 @@
 <?php
 
-	include_once('logic/framework.php');
+	// Include framework
 
-	$id = $_GET['id'];
+	include_once( 'logic/framework.php' );
+
+
+	// Check session
+	
+	session_start();
+	
+	if( !isset($_SESSION['id']) ){
+	
+		header("location:" . $_BASE_URL . "login.php");
+	
+	}
+	
+	
+	// Check if $_GET['id'] is defined
+
+	if ( !isset($_GET['id']) ) {
+		
+		header("location:" . $_BASE_URL . "index.php");
+		
+	} else {
+		
+		$id = $_GET['id'];	
+
+	}
+	
+
+	// Get Poll data
 
 	$stmt = $dbh->prepare('SELECT * FROM polls WHERE id=(?)');
 	$stmt->execute(array($id));
-
 	$poll = $stmt->fetch();
-
-	Fb::log( $poll );
 
 ?>
 
-<?php include_once('templates/header.php'); ?>
+<?php include_once( $_BASE_DIR . 'templates/header.php' ); ?>
 
-<h1>Edit Poll</h1>
+<h2>Edit Poll</h2>
 
 <div class="poll">
 
-	<form action="action-save_poll.php" method="post">
+	<form action="<?php echo $_BASE_URL ?>	actions/save_poll.php" method="post">
 
-		<input type="hidden" name="id" value="<?=$poll['id']?>">
+		<input type="hidden" name="id" value="<? echo $poll['id'] ?>">
 
 		<label>Title:</label>
-		<input type="text" name="title" value="<?=$poll['title']?>">
+		<input type="text" name="title" value="<?php echo $poll['title'] ?>">
 
 		<input type="submit" value="Save poll">
 
@@ -32,4 +56,4 @@
 
 </div>
 
-<?php include_once('templates/footer.php'); ?>
+<?php include_once( $_BASE_DIR . 'templates/footer.php' ); ?>	
