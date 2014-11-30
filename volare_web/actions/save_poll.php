@@ -1,6 +1,14 @@
 <?php
 
+	// Include framework
+
 	include_once('../logic/framework.php');
+	
+	
+	// Check $_POST
+	
+	include_once( $_BASE_DIR . 'logic/access/action.php' );
+	
 
 	$id = $_POST['id'];
 	$title = $_POST['title'];

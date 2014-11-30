@@ -5,6 +5,11 @@
 	include_once('../logic/framework.php');
 	
 	
+	// Check $_POST
+	
+	include_once( $_BASE_DIR . 'logic/access/action.php' );
+	
+	
 	// Check if $_POST['username'] and $_POST['password'] are defined
 
 	if ( !isset($_POST['username']) ||
@@ -13,11 +18,12 @@
 		 $_POST['password'] === ''		) {
 		
 		header("location:" . $_BASE_URL . "login.php");
+		die();
 		
 	} else {
 		
 		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$password = hash('sha256', $_POST['password']);
 
 	}
 	
@@ -30,17 +36,29 @@
 	
 	if ( !$result ) {
 		
-		echo 'Invalid username!';
+		echo "<script type='text/javascript'>";
+		
+			echo "alert('Error: Invalid Username!');";
+			echo "window.location.href = '" . $_BASE_URL . "login.php'";
+			
+		echo "</script>";
+		die();
 		
 	} else if ( $password != $result['password'] ) {
 		
-		echo 'Invalid password!';
+		echo "<script type='text/javascript'>";
+		
+			echo "alert('Error: Invalid Password!');";
+			echo "window.location.href = '" . $_BASE_URL . "login.php'";
+			
+		echo "</script>";
+		die();
 	
 	} else {
 		
 		echo 'Login successful!';
 		session_start();
-		$_SESSION['id'] = $result['id'];
+		$_SESSION['username'] = $result['username'];
 		header("location:" . $_BASE_URL);
 		
 	}

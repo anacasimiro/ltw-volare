@@ -1,0 +1,218 @@
+/*
+== ------------------------------------------------------------------- ==
+== @@ Forms (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+
+form {
+	
+	.clearfix();
+	
+}
+
+input[type=text], input[type=password], input[type=radio] {
+	.appearance(none);
+	color: #666;
+	font-size: 1em;
+	height: 40px;
+	width: 160px;
+	border: 2px solid #ddd;
+	.border-radius(5px);
+	padding: 0 10px;
+	display: block;
+	float: left;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	
+	&:focus, &:checked {
+		 
+		border-color: #666;
+			
+	}
+	
+	&.empty {
+		
+		border-color: #f99;
+		
+	}
+	
+	@media @phone_portrait {
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+}
+
+input[type=submit] {
+	.appearance(none);
+	border: 2px solid #ddd;
+	.border-radius(5px);
+	height: 40px;
+	background: url('images/checked.png') center center no-repeat;
+	margin: 0 auto;
+	display: block;
+	width: 40px;
+	font-weight: bold;
+	cursor: pointer;
+	float: left;
+	margin-bottom: 20px;
+	
+	&:hover, &:focus {
+		border-color: #666;
+	}
+	
+	@media @phone_portrait {
+		
+		float: none;
+		width: 160px;
+		
+	}
+	
+}
+
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Login and Signup Forms (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+
+.splash_screen .login-form, .splash_screen .signup-form {
+		
+		width: 400px;
+		margin: 0 auto 0px auto;
+		
+		@media @phone_portrait {
+			width: 100%;
+		}
+		
+	}
+
+.splash_screen .login-form {
+	
+	//display: none;
+	
+}
+
+.splash_screen .signup-form {
+	
+	display: none;
+	
+	input[name=username],
+	input[name=password],
+	input[name=confirm],
+	input[type=submit] {
+		
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+		width: 160px;
+		
+	}
+	
+}
+
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Edit User Form (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+
+.edit_user-form {
+	
+	input { float: none; }
+	
+	label { padding-left: 5px; }
+	
+	input[type=text], input[type=password], input[type=radio] { width: 100%; }
+	input[type=submit] { width: 100px; }
+	
+	input[type=radio] {
+		
+		width: 40px;
+		float: left;
+		margin-top: 0;
+		margin-left: 0;
+		cursor: pointer;
+		
+	}
+	
+	input[type=radio][value=M] { background: url('images/M.png') no-repeat center center; }
+	input[type=radio][value=F] { background: url('images/F.png') no-repeat center center; }
+
+}
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Edit Poll Form (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+
+.edit_poll-form {
+	
+	input { float: none; }
+	
+	label { padding-left: 5px; }
+	
+	input[type=text], input[type=password], input[type=radio] { width: 100%; }
+	input[type=submit] { width: 100px; }
+	
+	input[type=radio] {
+		
+		width: 45%;
+		float: left;
+		margin-top: 0;
+		margin-left: 0;
+		margin-right: 10%;
+		cursor: pointer;
+		
+		&:last-of-type { margin-right: 0; }
+		
+	}
+	
+	input[type=radio][value=private] { background: url('images/locked.png') no-repeat center center; }
+	input[type=radio][value=public]  { background: url('images/unlocked.png') no-repeat center center; }
+	
+	.poll_image {
+		
+		background: url('images/no_image.jpg') no-repeat center center;
+		border: 2px solid #ddd;
+		.border-radius(5px);
+		height: 227px;
+		width: 227px;
+		overflow: hidden;
+		
+		img {
+			
+			height: 225px;
+			width: 225px;
+			
+		}
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

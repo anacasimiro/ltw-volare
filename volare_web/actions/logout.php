@@ -7,13 +7,7 @@
 	
 	// Check session
 	
-	session_start();
-	
-	if( !isset($_SESSION['id']) || $_SESSION['id'] === '' ) {
-	
-		header("location:" . $_BASE_URL);
-	
-	}
+	include_once( $_BASE_DIR . 'logic/access/logged.php' );
 	
 	
 	// Destroy session

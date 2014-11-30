@@ -204,7 +204,7 @@
 					"startDate",
 					"endDate"
 									
-				) VALUES ("?", ?, "?", ?, ?, ?, ?, ?, ?)
+				) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 			
 			');
 			
@@ -247,9 +247,9 @@
 			
 				UPDATE polls SET
 				
-					"title" = "?",
+					"title" = ?,
 					"ownerId" = ?,
-					"image" = "?",
+					"image" = ?,
 					"isPublic" = ?,
 					"isActive" = ?,
 					"notifyOwner" = ?,
@@ -363,7 +363,7 @@
 			
 				UPDATE pollOptions SET
 					
-					"title" = "?",
+					"title" = ?,
 					"order" = ?,
 					"pollId" = ?
 					

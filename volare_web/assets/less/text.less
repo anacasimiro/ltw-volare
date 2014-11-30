@@ -6,31 +6,49 @@
 
 @font-face {
 	
-	font-family: "OratorStd";
-	src: url('fonts/OratorStd.otf') format("opentype");
-	
-}
-
-@font-face {
-	
-	font-family: "Orator";
-	src: url('fonts/Orator.ttf') format("truetype");
-	
-}
-
-@font-face {
-	
-	font-family: "OratorBold";
-	src: url('fonts/OratorBold.ttf') format("truetype");
+	font-family: 'OratorStd';
+	src: url('fonts/OratorStd.eot');
+	src: local('☺'), url('fonts/OratorStd.woff') format('woff'), url('fonts/OratorStd.ttf') format('truetype'), url('fonts/OratorStd.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 	
 }
 
 body {
+	
 	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
 	font-size: 12px;
+	
+}
+
+a {
+	
+	color: #666;
+	text-decoration: none;
+	
+	&:hover {
+		
+		color: #000;
+		
+	}
+	
 }
 
 h1 {
+	
 	font-size: 36px;
 	font-family: "OratorStd";
+	
+}
+
+form {
+	
+	label {
+		
+		font-family: "OratorStd";
+		font-size: 1.2em;
+		text-transform: lowercase;		
+		
+	}
+	
 }

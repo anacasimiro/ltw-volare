@@ -1,7 +1,7 @@
 <?php
 
 $_BASE_DIR = '/Users/Joao/FEUP/LTW/Volare/volare_web/';
-$_BASE_URL = 'http://192.168.1.69:8888/';
+$_BASE_URL = 'http://192.168.1.7:8888/';
 $_DB_PATH  = 'data/database.sqlite';
 
 
@@ -42,6 +42,7 @@ try {
 */
 
 include_once($_BASE_DIR . 'logic/classes/poll.php');
+include_once($_BASE_DIR . 'logic/classes/user.php');
 
 
 ?>

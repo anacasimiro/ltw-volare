@@ -1,6 +1,5 @@
 <?php
 
-
 	// Include framework
 	
 	include_once( 'logic/framework.php' );
@@ -8,15 +7,7 @@
 	
 	// Check session
 	
-	session_start();
-	
-	if( isset($_SESSION['id']) && $_SESSION['id'] !== '' ) {
-	
-		header("location:" . $_BASE_URL);
-	
-	}
-	
-	Fb::log( basename(__FILE__) );
+	include_once( $_BASE_DIR . 'logic/access/not_logged.php' );
 
 ?>
 
@@ -32,18 +23,18 @@
 	
 	<form class="login-form" action="<?php echo $_BASE_URL ?>actions/check_login.php" method="post">
 		
-		<input type="text" name="username" placeholder="USERNAME">
-		<input type="password" name="password" placeholder="PASSWORD">
+		<input autocomplete="off" class="" type="text" name="username" placeholder="USERNAME">
+		<input class="" type="password" name="password" placeholder="PASSWORD">
 		
 		<input type="submit" value="">
 		
 	</form>
 	
-	<form class="signup-form" action="" method="post">
+	<form class="signup-form" action="<?php echo $_BASE_URL ?>actions/signup.php" method="post">
 		
 		<input type="text" name="username" placeholder="USERNAME">
 		<input type="password" name="password" placeholder="PASSWORD">
-		<input type="password" name="confirm-password" placeholder="CONFIRM PASSWORD">
+		<input type="password" name="confirm" placeholder="CONFIRM PASSWORD">
 		
 		<input type="submit" value="">
 		

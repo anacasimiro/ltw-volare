@@ -1,0 +1,154 @@
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+
+.volare_row {
+	.clearfix();
+	margin: 0 -20px;
+	margin-bottom: 30px;
+	//height: 200px;
+	
+	&:last-child {
+		margin-bottom: 0;
+	}
+	
+	.volare_col {
+		display: block;
+		float: left;
+		padding: 0 20px;
+		word-wrap: break-word;
+		
+		@media @phone {
+			margin-bottom: 50px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	
+}
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 1 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+
+.volare_row .volare_col.span_1_of_1 { width: 100%; }
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 2 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+
+.volare_row .volare_col.span_2_of_2 { width: 100%; }
+.volare_row .volare_col.span_1_of_2 { width: 50%;  }
+
+@media @phone_portrait {
+	.volare_row .volare_col.span_2_of_2,
+	.volare_row .volare_col.span_1_of_2 { width: 100%;  }	
+}
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 3 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+
+.volare_row .volare_col.span_3_of_3 { width: 100%; 		  }
+.volare_row .volare_col.span_2_of_3 { width: 66.666666666%; }
+.volare_row .volare_col.span_1_of_3 { width: 33.333333333%; }
+
+@media @phone {
+	.volare_row .volare_col.span_3_of_3,
+	.volare_row .volare_col.span_2_of_3,
+	.volare_row .volare_col.span_1_of_3 { width: 100%; }
+}
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 4 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+
+.volare_row .volare_col.span_4_of_4 { width: 100%; }
+.volare_row .volare_col.span_3_of_4 { width: 75%;  }
+.volare_row .volare_col.span_2_of_4 { width: 50%;  }
+.volare_row .volare_col.span_1_of_4 { width: 25%;  }
+
+
+@media @phone {
+	.volare_row .volare_col.span_4_of_4,
+	.volare_row .volare_col.span_3_of_4,
+	.volare_row .volare_col.span_2_of_4,
+	.volare_row .volare_col.span_1_of_4 { width: 100%; }
+}
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 5 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+
+.volare_row .volare_col.span_5_of_5 { width: 100%; }
+.volare_row .volare_col.span_4_of_5 { width: 80%;  }
+.volare_row .volare_col.span_3_of_5 { width: 60%;  }
+.volare_row .volare_col.span_2_of_5 { width: 40%;  }
+.volare_row .volare_col.span_1_of_5 { width: 20%;  }
+
+@media @phone {
+	.volare_row .volare_col.span_5_of_5,
+	.volare_row .volare_col.span_4_of_5,
+	.volare_row .volare_col.span_3_of_5,
+	.volare_row .volare_col.span_2_of_5,
+	.volare_row .volare_col.span_1_of_5 { width: 100%; }
+}
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 6 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+
+.volare_row .volare_col.span_6_of_6 { width: 100%;		  }
+.volare_row .volare_col.span_5_of_6 { width: 83.333333333%; }
+.volare_row .volare_col.span_4_of_6 { width: 66.666666666%; }
+.volare_row .volare_col.span_3_of_6 { width: 50%;			  }
+.volare_row .volare_col.span_2_of_6 { width: 33.333333333%; }
+.volare_row .volare_col.span_1_of_6 { width: 16.666666666%; }
+
+@media @phone {
+	.volare_row .volare_col.span_6_of_6,
+	.volare_row .volare_col.span_5_of_6,
+	.volare_row .volare_col.span_4_of_6,
+	.volare_row .volare_col.span_3_of_6,
+	.volare_row .volare_col.span_2_of_6,
+	.volare_row .volare_col.span_1_of_6 { width: 100%; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

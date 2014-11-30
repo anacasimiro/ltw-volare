@@ -1,0 +1,81 @@
+/*
+== ------------------------------------------------------------------- ==
+== @@ Header (header.less)
+== ------------------------------------------------------------------- ==
+*/
+
+header {
+	
+	font-family: "OratorStd";
+	font-size: 1.2em;
+	text-transform: lowercase;
+	
+	.meta_bar {
+	
+		.clearfix();
+		
+		a {
+			
+			float: right;
+			line-height: 2em;
+			
+		}
+		
+	}
+	
+	.main {
+		
+		.clearfix();
+	
+		.logo {
+			
+			background: url('images/header_logo.png') no-repeat center center;
+			display: block;
+			height: 70px;
+			width: 186px;
+			float: left;
+			.opacity(0.7);
+			
+			&:hover {
+				
+				.opacity(1);
+				
+			}
+			
+		}
+		
+		.main_menu {
+			
+			float: right;
+			
+			ul {
+				
+				.clearfix();
+				margin: 0 -15px;
+				
+				li {
+					
+					float: left;
+					
+					a {
+						
+						//background-color: #eee;
+						line-height: 2em;
+						margin-top: 22px;
+						display: block;
+						width: 100%;
+						padding: 0 15px;
+						text-align: center;
+						font-size: 1.2em;
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+}

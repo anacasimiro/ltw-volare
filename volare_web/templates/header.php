@@ -18,8 +18,31 @@
 			echo '<header>';
 				
 				echo '<div class="page_canvas">';
+				
+					echo '<div class="meta_bar">';
 					
-					echo '<a href="' . $_BASE_URL . '">Home</a>';
+						echo '<a href="' . $_BASE_URL . 'actions/logout.php">Logout</a>';
+					
+					echo '</div>';
+					
+					echo '<div class="main">';
+					
+						echo '<a class="logo" href="' . $_BASE_URL . '"></a>';
+					
+						echo '<nav class="main_menu">';
+						
+							echo '<ul>';
+							
+								echo '<li class="home"><a href="' . $_BASE_URL . '">Home</a></li>';
+								echo '<li class="new_poll"><a href="' . $_BASE_URL . 'edit_poll.php?id=0">New Poll</a></li>';
+								echo '<li class="my_polls"><a href="' . $_BASE_URL . '">My Polls</a></li>';
+								echo '<li class="my_profile"><a href="' . $_BASE_URL . 'edit_user.php">' . $currentUser->getUsername() . '</a></li>';
+							
+							echo '</ul>';
+						
+						echo '</nav>';
+						
+					echo '</div>';
 					
 				echo '</div>';
 				

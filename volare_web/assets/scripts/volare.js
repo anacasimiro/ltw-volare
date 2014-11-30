@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function enableSignupButton() {
 	
 	$('.signup a').click(function(event) {
 		
@@ -12,8 +12,7 @@ $(document).ready(function() {
 				
 			});
 			
-			$('.more').fadeOut();
-			$('#poll_examples').fadeOut();
+			//$('.more').fadeOut();
 			
 		} else {
 			
@@ -21,8 +20,7 @@ $(document).ready(function() {
 			
 				$('.login-form').fadeIn();
 				
-				$('.more').fadeIn();
-				$('#poll_examples').fadeIn();
+				//$('.more').fadeIn();
 				
 			});
 			
@@ -37,5 +35,88 @@ $(document).ready(function() {
 		$(this).fadeIn();
 		
 	});
+	
+}
+
+function validateLoginForm() {
+	
+	var username = $('.login-form input[name=username]');
+	var password = $('.login-form input[name=password]');
+	
+	username.focus(function() {
+		$(this).removeClass('empty');
+	});
+
+	password.focus(function() {
+		$(this).removeClass('empty');
+	});
+	
+	$('.login-form input[type=submit]').click(function(event) {
+		
+		if ( username.val() === '' ) {
+			
+			username.addClass('empty');
+			event.preventDefault();
+			
+		}
+		
+		if ( password.val() === '' ) {
+			
+			password.addClass('empty');
+			event.preventDefault();
+			
+		}
+		
+	});
+	
+}
+
+function validateSignupForm() {
+	
+	var username   = $('.signup-form input[name=username]');
+	var password   = $('.signup-form input[name=password]');
+	var confirm    = $('.signup-form input[name=confirm]');
+	
+	username.focus(function() {
+		$(this).removeClass('empty');
+	});
+
+	password.focus(function() {
+		$(this).removeClass('empty');
+	});
+	
+	$('.signup-form input[type=submit]').click(function(event) {
+		
+		if ( username.val() === '' ) {
+			
+			username.addClass('empty');
+			event.preventDefault();
+			
+		}
+		
+		if ( password.val() === '' ) {
+			
+			password.addClass('empty');
+			event.preventDefault();
+			
+		}
+		
+		if ( confirm.val() === '' ) {
+			
+			confirm.addClass('empty');
+			event.preventDefault();
+			
+		}
+		
+	});
+	
+}
+
+
+$(document).ready(function() {
+	
+	enableSignupButton();
+	validateLoginForm();
+	validateSignupForm();
 	
 });

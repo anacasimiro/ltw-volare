@@ -7,22 +7,25 @@
 	
 	// Check session
 	
-	session_start();
+	include_once( $_BASE_DIR . 'logic/access/logged.php' );
 	
-	if( !isset($_SESSION['id']) || $_SESSION['id'] === '' ) {
 	
-		header("location:" . $_BASE_URL . "login.php");
+	// Get current user
 	
+	$currentUser = User::withUsername( $_SESSION['username'] );
+	
+	
+	// Get the 6 latest Polls
+
+	$stmt = $dbh->prepare('SELECT id FROM polls WHERE endDate > ? ORDER BY startDate DESC LIMIT ?');
+	$stmt->execute( array(time(), 6) );
+	$result = $stmt->fetchAll();
+	
+	foreach ( $result as $row ) {
+		
+		$latestPolls[] = Poll::withId( $row['id'] );
+		
 	}
-	
-	Fb::log( 'Session is registered for user with id = ' . $_SESSION['id'] );
-	
-	
-
-	$stmt = $dbh->prepare('SELECT * FROM polls ');
-	$stmt->execute();
-
-	$polls = Poll::getAll();
 
 ?>
 
@@ -32,7 +35,7 @@
 
 <section class="poll_list">
 
-	<?php foreach ($polls as $poll) : ?>
+	<?php foreach ($latestPolls as $poll) : ?>
 
 		<article class="clearfix">
 
@@ -42,7 +45,7 @@
 			
 			<div class="link">
 				
-				<a href="edit_poll.php?id=<?php echo $poll->getid(); ?>">Edit</a>
+				<a href="<?php echo $_BASE_URL ?>edit_poll.php?id=<?php echo $poll->getId(); ?>">Edit</a>
 				
 			</div>
 			
@@ -55,7 +58,9 @@
 									
 				<?php endforeach; ?>
 				
-				<input type="submit" value="Vote">
+				<input type="submit" value="">
+				
+				<p>Poll started in: <?php echo date( 'd M Y, h:m:s', $poll->getStartDate() ) ?></p>
 			
 			</form>
 
@@ -64,7 +69,5 @@
 	<?php endforeach; ?>
 
 </section>
-
-<a href="<?php echo $_BASE_URL ?>actions/logout.php">Logout</a>
 
 <?php include_once($_BASE_DIR . 'templates/footer.php'); ?>

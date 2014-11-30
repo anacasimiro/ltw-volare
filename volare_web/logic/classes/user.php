@@ -17,30 +17,30 @@
 		
 		public function __construct( $userData ) {
 			
-			$this->id                = isset( $userData['id']				) ? $userData['id']					: 0;
-			$this->username          = isset( $userData['username']			) ? $userData['username']			: '';
-			$this->password          = isset( $userData['password']			) ? $userData['password']			: '';
-			$this->email             = isset( $userData['email']			) ? $userData['email']				: '';
-			$this->gender            = isset( $userData['gender']			) ? $userData['gender']				: 0;
-			$this->image             = isset( $userData['image']			) ? $userData['image']				: '';
-			$this->birthDate         = isset( $userData['birthDate']		) ? $userData['birthDate']			: 0;
-			$this->registrationDate  = isset( $userData['registrationDate']	) ? $userData['registrationDate']	: 0;
-			$this->lastLogin         = isset( $userData['lastLogin']		) ? $userData['lastLogin']			: 0;
+			$this->id                = isset( $userData['id']				) ? $userData['id']					: NULL;
+			$this->username          = isset( $userData['username']			) ? $userData['username']			: NULL;
+			$this->password          = isset( $userData['password']			) ? $userData['password']			: NULL;
+			$this->email             = isset( $userData['email']			) ? $userData['email']				: NULL;
+			$this->gender            = isset( $userData['gender']			) ? $userData['gender']				: NULL;
+			$this->image             = isset( $userData['image']			) ? $userData['image']				: NULL;
+			$this->birthDate         = isset( $userData['birthDate']		) ? $userData['birthDate']			: NULL;
+			$this->registrationDate  = isset( $userData['registrationDate']	) ? $userData['registrationDate']	: NULL;
+			$this->lastLogin         = isset( $userData['lastLogin']		) ? $userData['lastLogin']			: NULL;
 			
 		}
 		
 		
 		// Getters
 		
-		public function getId()					{ return $id;				}
-		public function getUsername()			{ return $username;			}
-		public function getPassword()			{ return $password;			}
-		public function getEmail()				{ return $email;			}
-		public function getGender()				{ return $gender;			}
-		public function getImage()				{ return $image;			}
-		public function getBirthDate()			{ return $birthDate;		}
-		public function getRegistrationDate()	{ return $registrationDate;	}
-		public function getLastLogin()			{ return $lastLogin;		}
+		public function getId()					{ return $this->id;				}
+		public function getUsername()			{ return $this->username;			}
+		public function getPassword()			{ return $this->password;			}
+		public function getEmail()				{ return $this->email;			}
+		public function getGender()				{ return $this->gender;			}
+		public function getImage()				{ return $this->image;			}
+		public function getBirthDate()			{ return $this->birthDate;		}
+		public function getRegistrationDate()	{ return $this->registrationDate;	}
+		public function getLastLogin()			{ return $this->lastLogin;		}
 		
 		
 		// Setters
@@ -94,7 +94,7 @@
 			
 			// Get User from database
 			
-			$stmt = $dbh->prepare('SELECT * FROM users WHERE username = "?"');
+			$stmt = $dbh->prepare('SELECT * FROM users WHERE username = ?');
 			$stmt->execute(array( $username ));
 			$userData = $stmt->fetch();
 						
@@ -168,7 +168,7 @@
 					"registrationDate",
 					"lastLogin"
 									
-				) VALUES ("?", "?", "?", ?, "?", ?, ?, ?)
+				) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 			
 			');
 			
@@ -201,11 +201,11 @@
 			
 				UPDATE users SET
 				
-					"username" = "?",
-					"password" = "?",
-					"email" = "?",
+					"username" = ?,
+					"password" = ?,
+					"email" = ?,
 					"gender" = ?,
-					"image" = "?",
+					"image" = ?,
 					"birthDate" = ?,
 					"registrationDate" = ?,
 					"lastLogin" = ?

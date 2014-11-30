@@ -157,6 +157,175 @@ body .__web-inspector-hide-shortcut__ * {
 }
 /*
 == ------------------------------------------------------------------- ==
+== @@ Grid (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+.volare_row {
+  display: block;
+  zoom: 1;
+  margin: 0 -20px;
+  margin-bottom: 30px;
+}
+.volare_row:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.volare_row:last-child {
+  margin-bottom: 0;
+}
+.volare_row .volare_col {
+  display: block;
+  float: left;
+  padding: 0 20px;
+  word-wrap: break-word;
+}
+@media only screen and (max-width:767px) {
+  .volare_row .volare_col {
+    margin-bottom: 50px;
+  }
+  .volare_row .volare_col:last-child {
+    margin-bottom: 0;
+  }
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 1 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+.volare_row .volare_col.span_1_of_1 {
+  width: 100%;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 2 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+.volare_row .volare_col.span_2_of_2 {
+  width: 100%;
+}
+.volare_row .volare_col.span_1_of_2 {
+  width: 50%;
+}
+@media only screen and (max-width:479px) {
+  .volare_row .volare_col.span_2_of_2,
+  .volare_row .volare_col.span_1_of_2 {
+    width: 100%;
+  }
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 3 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+.volare_row .volare_col.span_3_of_3 {
+  width: 100%;
+}
+.volare_row .volare_col.span_2_of_3 {
+  width: 66.666666666%;
+}
+.volare_row .volare_col.span_1_of_3 {
+  width: 33.333333333%;
+}
+@media only screen and (max-width:767px) {
+  .volare_row .volare_col.span_3_of_3,
+  .volare_row .volare_col.span_2_of_3,
+  .volare_row .volare_col.span_1_of_3 {
+    width: 100%;
+  }
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 4 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+.volare_row .volare_col.span_4_of_4 {
+  width: 100%;
+}
+.volare_row .volare_col.span_3_of_4 {
+  width: 75%;
+}
+.volare_row .volare_col.span_2_of_4 {
+  width: 50%;
+}
+.volare_row .volare_col.span_1_of_4 {
+  width: 25%;
+}
+@media only screen and (max-width:767px) {
+  .volare_row .volare_col.span_4_of_4,
+  .volare_row .volare_col.span_3_of_4,
+  .volare_row .volare_col.span_2_of_4,
+  .volare_row .volare_col.span_1_of_4 {
+    width: 100%;
+  }
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 5 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+.volare_row .volare_col.span_5_of_5 {
+  width: 100%;
+}
+.volare_row .volare_col.span_4_of_5 {
+  width: 80%;
+}
+.volare_row .volare_col.span_3_of_5 {
+  width: 60%;
+}
+.volare_row .volare_col.span_2_of_5 {
+  width: 40%;
+}
+.volare_row .volare_col.span_1_of_5 {
+  width: 20%;
+}
+@media only screen and (max-width:767px) {
+  .volare_row .volare_col.span_5_of_5,
+  .volare_row .volare_col.span_4_of_5,
+  .volare_row .volare_col.span_3_of_5,
+  .volare_row .volare_col.span_2_of_5,
+  .volare_row .volare_col.span_1_of_5 {
+    width: 100%;
+  }
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Grid of 6 (grid.css)
+== ------------------------------------------------------------------- ==
+*/
+.volare_row .volare_col.span_6_of_6 {
+  width: 100%;
+}
+.volare_row .volare_col.span_5_of_6 {
+  width: 83.333333333%;
+}
+.volare_row .volare_col.span_4_of_6 {
+  width: 66.666666666%;
+}
+.volare_row .volare_col.span_3_of_6 {
+  width: 50%;
+}
+.volare_row .volare_col.span_2_of_6 {
+  width: 33.333333333%;
+}
+.volare_row .volare_col.span_1_of_6 {
+  width: 16.666666666%;
+}
+@media only screen and (max-width:767px) {
+  .volare_row .volare_col.span_6_of_6,
+  .volare_row .volare_col.span_5_of_6,
+  .volare_row .volare_col.span_4_of_6,
+  .volare_row .volare_col.span_3_of_6,
+  .volare_row .volare_col.span_2_of_6,
+  .volare_row .volare_col.span_1_of_6 {
+    width: 100%;
+  }
+}
+/*
+== ------------------------------------------------------------------- ==
 == @@ General (general.less)
 == ------------------------------------------------------------------- ==
 */
@@ -184,11 +353,6 @@ body {
   height: 0;
   clear: both;
   visibility: hidden;
-}
-@media only screen and (max-width:999px) {
-  .page_canvas {
-    width: 85%;
-  }
 }
 @media only screen and (max-width:767px) {
   .page_canvas {
@@ -227,24 +391,237 @@ body {
 == ------------------------------------------------------------------- ==
 */
 @font-face {
-  font-family: "OratorStd";
-  src: url('fonts/OratorStd.otf') format("opentype");
-}
-@font-face {
-  font-family: "Orator";
-  src: url('fonts/Orator.ttf') format("truetype");
-}
-@font-face {
-  font-family: "OratorBold";
-  src: url('fonts/OratorBold.ttf') format("truetype");
+  font-family: 'OratorStd';
+  src: url('fonts/OratorStd.eot');
+  src: local('☺'), url('fonts/OratorStd.woff') format('woff'), url('fonts/OratorStd.ttf') format('truetype'), url('fonts/OratorStd.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 body {
   font-family: "Lucida Grande", Arial, Verdana, sans-serif;
   font-size: 12px;
 }
+a {
+  color: #666;
+  text-decoration: none;
+}
+a:hover {
+  color: #000;
+}
 h1 {
   font-size: 36px;
   font-family: "OratorStd";
+}
+form label {
+  font-family: "OratorStd";
+  font-size: 1.2em;
+  text-transform: lowercase;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Forms (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+form {
+  display: block;
+  zoom: 1;
+}
+form:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+input[type=text],
+input[type=password],
+input[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #666;
+  font-size: 1em;
+  height: 40px;
+  width: 160px;
+  border: 2px solid #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 0 10px;
+  display: block;
+  float: left;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=radio]:focus,
+input[type=text]:checked,
+input[type=password]:checked,
+input[type=radio]:checked {
+  border-color: #666;
+}
+input[type=text].empty,
+input[type=password].empty,
+input[type=radio].empty {
+  border-color: #f99;
+}
+@media only screen and (max-width:479px) {
+  input[type=text],
+  input[type=password],
+  input[type=radio] {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+input[type=submit] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  height: 40px;
+  background: url('images/checked.png') center center no-repeat;
+  margin: 0 auto;
+  display: block;
+  width: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  float: left;
+  margin-bottom: 20px;
+}
+input[type=submit]:hover,
+input[type=submit]:focus {
+  border-color: #666;
+}
+@media only screen and (max-width:479px) {
+  input[type=submit] {
+    float: none;
+    width: 160px;
+  }
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Login and Signup Forms (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+.splash_screen .login-form,
+.splash_screen .signup-form {
+  width: 400px;
+  margin: 0 auto 0px auto;
+}
+@media only screen and (max-width:479px) {
+  .splash_screen .login-form,
+  .splash_screen .signup-form {
+    width: 100%;
+  }
+}
+.splash_screen .signup-form {
+  display: none;
+}
+.splash_screen .signup-form input[name=username],
+.splash_screen .signup-form input[name=password],
+.splash_screen .signup-form input[name=confirm],
+.splash_screen .signup-form input[type=submit] {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 160px;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Edit User Form (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+.edit_user-form input {
+  float: none;
+}
+.edit_user-form label {
+  padding-left: 5px;
+}
+.edit_user-form input[type=text],
+.edit_user-form input[type=password],
+.edit_user-form input[type=radio] {
+  width: 100%;
+}
+.edit_user-form input[type=submit] {
+  width: 100px;
+}
+.edit_user-form input[type=radio] {
+  width: 40px;
+  float: left;
+  margin-top: 0;
+  margin-left: 0;
+  cursor: pointer;
+}
+.edit_user-form input[type=radio][value=M] {
+  background: url('images/M.png') no-repeat center center;
+}
+.edit_user-form input[type=radio][value=F] {
+  background: url('images/F.png') no-repeat center center;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Edit Poll Form (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+.edit_poll-form input {
+  float: none;
+}
+.edit_poll-form label {
+  padding-left: 5px;
+}
+.edit_poll-form input[type=text],
+.edit_poll-form input[type=password],
+.edit_poll-form input[type=radio] {
+  width: 100%;
+}
+.edit_poll-form input[type=submit] {
+  width: 100px;
+}
+.edit_poll-form input[type=radio] {
+  width: 45%;
+  float: left;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 10%;
+  cursor: pointer;
+}
+.edit_poll-form input[type=radio]:last-of-type {
+  margin-right: 0;
+}
+.edit_poll-form input[type=radio][value=private] {
+  background: url('images/locked.png') no-repeat center center;
+}
+.edit_poll-form input[type=radio][value=public] {
+  background: url('images/unlocked.png') no-repeat center center;
+}
+.edit_poll-form .poll_image {
+  background: url('images/no_image.jpg') no-repeat center center;
+  border: 2px solid #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  height: 227px;
+  width: 227px;
+  overflow: hidden;
+}
+.edit_poll-form .poll_image img {
+  height: 225px;
+  width: 225px;
 }
 /*
 == ------------------------------------------------------------------- ==
@@ -253,10 +630,11 @@ h1 {
 */
 .splash_screen {
   font-family: "OratorStd";
-  height: 100%;
+  min-height: 100%;
+  width: 100%;
 }
 .splash_screen .logo {
-  background: url('images/logo.jpg');
+  background: url('images/main_logo.jpg');
   background-size: cover;
   height: 160px;
   width: 160px;
@@ -308,6 +686,7 @@ h1 {
   width: 300px;
   font-size: 1.4em;
   text-transform: lowercase;
+  display: none;
 }
 .splash_screen .more p {
   margin-bottom: 0;
@@ -331,18 +710,29 @@ h1 {
 }
 /*
 == ------------------------------------------------------------------- ==
-== @@ Login and Signup Forms (login.less)
+== @@ Poll Examples (login.less)
 == ------------------------------------------------------------------- ==
 */
-.splash_screen .login-form,
-.splash_screen .signup-form {
-  width: 400px;
-  margin: 0 auto 0px auto;
+#poll_examples {
+  min-height: 100%;
+  padding-top: 40px;
+  display: none;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Header (header.less)
+== ------------------------------------------------------------------- ==
+*/
+header {
+  font-family: "OratorStd";
+  font-size: 1.2em;
+  text-transform: lowercase;
+}
+header .meta_bar {
   display: block;
   zoom: 1;
 }
-.splash_screen .login-form:after,
-.splash_screen .signup-form:after {
+header .meta_bar:after {
   content: " ";
   display: block;
   font-size: 0;
@@ -350,111 +740,62 @@ h1 {
   clear: both;
   visibility: hidden;
 }
-@media only screen and (max-width:479px) {
-  .splash_screen .login-form,
-  .splash_screen .signup-form {
-    width: 100%;
-  }
+header .meta_bar a {
+  float: right;
+  line-height: 2em;
 }
-.splash_screen .login-form input[name=username],
-.splash_screen .signup-form input[name=username],
-.splash_screen .login-form input[name=password],
-.splash_screen .signup-form input[name=password],
-.splash_screen .login-form input[name=confirm-password],
-.splash_screen .signup-form input[name=confirm-password] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  color: #666;
-  font-size: 1em;
-  height: 40px;
-  width: 160px;
-  border: 2px solid #eee;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  padding: 0 10px;
+header .main {
   display: block;
-  float: left;
-  margin-bottom: 20px;
-  margin-right: 20px;
+  zoom: 1;
 }
-.splash_screen .login-form input[name=username]:focus,
-.splash_screen .signup-form input[name=username]:focus,
-.splash_screen .login-form input[name=password]:focus,
-.splash_screen .signup-form input[name=password]:focus,
-.splash_screen .login-form input[name=confirm-password]:focus,
-.splash_screen .signup-form input[name=confirm-password]:focus {
-  border-color: #666;
-}
-@media only screen and (max-width:479px) {
-  .splash_screen .login-form input[name=username],
-  .splash_screen .signup-form input[name=username],
-  .splash_screen .login-form input[name=password],
-  .splash_screen .signup-form input[name=password],
-  .splash_screen .login-form input[name=confirm-password],
-  .splash_screen .signup-form input[name=confirm-password] {
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-.splash_screen .login-form input[type=submit],
-.splash_screen .signup-form input[type=submit] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 2px solid #eee;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  height: 40px;
-  background: url('images/checked.png') center center no-repeat;
-  margin: 0 auto;
+header .main:after {
+  content: " ";
   display: block;
-  width: 40px;
-  font-weight: bold;
-  cursor: pointer;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+header .main .logo {
+  background: url('images/header_logo.png') no-repeat center center;
+  display: block;
+  height: 70px;
+  width: 186px;
   float: left;
-  margin-bottom: 20px;
+  -webkit-opacity: 0.7;
+  -moz-opacity: 0.7;
+  opacity: 0.7;
 }
-.splash_screen .login-form input[type=submit]:hover,
-.splash_screen .signup-form input[type=submit]:hover,
-.splash_screen .login-form input[type=submit]:focus,
-.splash_screen .signup-form input[type=submit]:focus {
-  border-color: #666;
+header .main .logo:hover {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
 }
-@media only screen and (max-width:479px) {
-  .splash_screen .login-form input[type=submit],
-  .splash_screen .signup-form input[type=submit] {
-    float: none;
-    width: 160px;
-  }
+header .main .main_menu {
+  float: right;
 }
-.splash_screen .signup-form {
-  display: none;
+header .main .main_menu ul {
+  display: block;
+  zoom: 1;
+  margin: 0 -15px;
 }
-.splash_screen .signup-form input[name=username],
-.splash_screen .signup-form input[name=password],
-.splash_screen .signup-form input[name=confirm-password],
-.splash_screen .signup-form input[type=submit] {
-  float: none;
-  margin-left: auto;
-  margin-right: auto;
-  width: 160px;
+header .main .main_menu ul:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
-/*
-== ------------------------------------------------------------------- ==
-== @@ Poll Examples (login.less)
-== ------------------------------------------------------------------- ==
-*/
-#poll_examples {
-  min-height: 100%;
-  padding-top: 40px;
+header .main .main_menu ul li {
+  float: left;
+}
+header .main .main_menu ul li a {
+  line-height: 2em;
+  margin-top: 22px;
+  display: block;
+  width: 100%;
+  padding: 0 15px;
+  text-align: center;
+  font-size: 1.2em;
 }
