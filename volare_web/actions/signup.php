@@ -19,7 +19,12 @@
 		 $_POST['password'] === ''  ||
 		 $_POST['confirm']  === ''     ) {
 		
-		header("location:" . $_BASE_URL . "login.php");
+		echo "<script type='text/javascript'>";
+		
+			echo "alert('Error: Empty fields!');";
+			echo "window.location.href = '" . $_BASE_URL . "login.php'";
+			
+		echo "</script>";
 		die();
 		
 	} else {

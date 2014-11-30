@@ -2,9 +2,21 @@
 		
 		</div>
 		
+		<div class="fade footer"></div>		
+		
 		<footer>
 			
-			
+			<div class="socket">
+				
+				<div class="page_canvas">
+				
+					<span class="copyright">2014 Volare &#169 All rights reserved</span>
+					
+					<span class="developers">Developed by: Ana Casimiro & João Bernardino</span>
+					
+				</div>
+				
+			</div>
 			
 		</footer>
 		

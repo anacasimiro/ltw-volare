@@ -23,29 +23,20 @@
 
 	<div class="volare_row">
 		
-		<div class="volare_col span_1_of_3">
+		<div class="volare_col span_1_of_2">
 	
 			<label>Username</label>
 			<input type="text" name="username" value="<?php echo $currentUser->getUsername() ?>">
 			
+		</div>
+		
+		<div class="volare_col span_1_of_2">
+			
 			<label>E-mail</label>
-			<input type="text" name="email" value="">
+			<input type="text" name="email" value="<?php echo $currentUser->getEmail() ?>">
 			
 		</div>
-		
-		<div class="volare_col span_1_of_3">
-			
-			<label>Birth date</label>
-			<input type="text" name="birthDate" placeholder="DD/MM/YYYY" value="<?php echo date('d/m/Y', $currentUser->getBirthDate()) ?>">
-		
-			<div class="gender">
-				<label>Gender</label><br/>
-				<input type="radio" name="gender" value="M">
-				<input type="radio" name="gender" value="F">
-			</div>
-			
-		</div>
-		
+	
 	</div>
 	
 	<div class="volare_row">
@@ -54,16 +45,33 @@
 			
 			<label>Current password</label>
 			<input type="password" name="current_password" value="">
+			
+		</div>
+		
+		<div class="volare_col span_1_of_3">
 		
 			<label>New password</label>
 			<input type="password" name="new_password" value="">
+			
+		</div>
+		
+		<div class="volare_col span_1_of_3">
 			
 			<label>Confirm password</label>
 			<input type="password" name="confirm_password" value="">
 			
 		</div>
 
-		<input type="submit" value="">
+		
+	</div>
+	
+	<div class="volare_row">
+		
+		<div class="volare_col span_1_of_1">
+			
+			<input type="submit" value="Save">
+			
+		</div>
 	
 	</div>
 

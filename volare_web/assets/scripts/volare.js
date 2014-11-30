@@ -85,6 +85,10 @@ function validateSignupForm() {
 		$(this).removeClass('empty');
 	});
 	
+	confirm.focus(function() {
+		$(this).removeClass('empty');
+	});
+	
 	$('.signup-form input[type=submit]').click(function(event) {
 		
 		if ( username.val() === '' ) {

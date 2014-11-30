@@ -15,7 +15,7 @@
 
 <div class="splash_screen">
 
-	<div class="logo"></div>
+	<a class="logo" href="<?php echo $_BASE_URL ?>"></a>
 	
 	<h1>Time flies<br/>Make good choices</h1>
 	
@@ -26,7 +26,7 @@
 		<input autocomplete="off" class="" type="text" name="username" placeholder="USERNAME">
 		<input class="" type="password" name="password" placeholder="PASSWORD">
 		
-		<input type="submit" value="">
+		<input type="submit" value="&#xf090;">
 		
 	</form>
 	
@@ -36,7 +36,7 @@
 		<input type="password" name="password" placeholder="PASSWORD">
 		<input type="password" name="confirm" placeholder="CONFIRM PASSWORD">
 		
-		<input type="submit" value="">
+		<input type="submit" value="Sign Up">
 		
 	</form>
 	

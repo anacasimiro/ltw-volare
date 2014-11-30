@@ -24,7 +24,7 @@ input[type=text], input[type=password], input[type=radio] {
 	margin-bottom: 20px;
 	margin-right: 20px;
 	
-	&:focus, &:checked {
+	&:focus, &:checked, &:hover, &.empty:hover {
 		 
 		border-color: #666;
 			
@@ -32,7 +32,7 @@ input[type=text], input[type=password], input[type=radio] {
 	
 	&.empty {
 		
-		border-color: #f99;
+		border-color: rgba(255, 0, 0, 0.4);
 		
 	}
 	
@@ -46,20 +46,25 @@ input[type=text], input[type=password], input[type=radio] {
 
 input[type=submit] {
 	.appearance(none);
-	border: 2px solid #ddd;
+	border: none;
 	.border-radius(5px);
+	color: #ddd;
 	height: 40px;
-	background: url('images/checked.png') center center no-repeat;
+	//background: url('images/checked.png') center center no-repeat;
+	background-color: #444;
 	margin: 0 auto;
 	display: block;
 	width: 40px;
 	font-weight: bold;
+	text-transform: uppercase;
 	cursor: pointer;
 	float: left;
 	margin-bottom: 20px;
 	
-	&:hover, &:focus {
-		border-color: #666;
+	&:focus, &:hover {
+		
+		background-color: #222;
+		
 	}
 	
 	@media @phone_portrait {
@@ -92,7 +97,12 @@ input[type=submit] {
 
 .splash_screen .login-form {
 	
-	//display: none;
+	input[type=submit] {
+		
+		font-family: "FontAwesome";
+		font-size: 1.8em;
+		
+	}
 	
 }
 
@@ -109,6 +119,13 @@ input[type=submit] {
 		margin-left: auto;
 		margin-right: auto;
 		width: 160px;
+		
+	}
+	
+	input[type=submit] {
+		
+		font-size: 1.1em;
+		text-transform: uppercase;
 		
 	}
 	
@@ -129,7 +146,12 @@ input[type=submit] {
 	label { padding-left: 5px; }
 	
 	input[type=text], input[type=password], input[type=radio] { width: 100%; }
-	input[type=submit] { width: 100px; }
+
+	input[type=submit] {
+		
+		width: 100px;
+		
+	}
 	
 	input[type=radio] {
 		
@@ -160,7 +182,12 @@ input[type=submit] {
 	label { padding-left: 5px; }
 	
 	input[type=text], input[type=password], input[type=radio] { width: 100%; }
-	input[type=submit] { width: 100px; }
+	
+	input[type=submit] {
+		
+		width: 100px;
+		
+	}
 	
 	input[type=radio] {
 		

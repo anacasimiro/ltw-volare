@@ -7,20 +7,54 @@
 
 html {
 	
-	height: 100%;
+	//height: 100%;
 	
 }
 
 body {
 	
-	height: 100%;
+	//height: 100%;
+	padding-bottom: 35px;
+	
+	&.fixed {
+		
+		padding-top: 103px;
+		
+	}
+	
+}
+
+.fade {
+
+	background-repeat: repeat-x;
+	height: 25px;
+	width: 100%;
+	position: fixed;
+	
+	&.header {
+		
+		background-image: url('images/header_fade.png');
+		background-position: center bottom;
+		top: 103px;	
+		
+	}
+	
+	&.footer {
+		
+		background-image: url('images/footer_fade.png');
+		bottom: 35px;
+		height: 25px;
+		
+	}
 	
 }
 
 .main_content {
 	
-	height: 100%;
-	padding-top: 50px;
+	//background-color: #0a0;
+	
+	//height: 100%;
+	padding: 50px 0;
 	
 }
 
@@ -31,7 +65,7 @@ body {
 	height: 100%;
 	width: 760px;
 	
-	@media @phone {
+	@media only screen and (max-width:849px) {
 		width: 85%;
 	}
 

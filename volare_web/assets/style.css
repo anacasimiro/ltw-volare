@@ -329,15 +329,30 @@ body .__web-inspector-hide-shortcut__ * {
 == @@ General (general.less)
 == ------------------------------------------------------------------- ==
 */
-html {
-  height: 100%;
-}
 body {
-  height: 100%;
+  padding-bottom: 35px;
+}
+body.fixed {
+  padding-top: 103px;
+}
+.fade {
+  background-repeat: repeat-x;
+  height: 25px;
+  width: 100%;
+  position: fixed;
+}
+.fade.header {
+  background-image: url('images/header_fade.png');
+  background-position: center bottom;
+  top: 103px;
+}
+.fade.footer {
+  background-image: url('images/footer_fade.png');
+  bottom: 35px;
+  height: 25px;
 }
 .main_content {
-  height: 100%;
-  padding-top: 50px;
+  padding: 50px 0;
 }
 .page_canvas {
   display: block;
@@ -354,7 +369,7 @@ body {
   clear: both;
   visibility: hidden;
 }
-@media only screen and (max-width:767px) {
+@media only screen and (max-width: 849px) {
   .page_canvas {
     width: 85%;
   }
@@ -462,13 +477,19 @@ input[type=password]:focus,
 input[type=radio]:focus,
 input[type=text]:checked,
 input[type=password]:checked,
-input[type=radio]:checked {
+input[type=radio]:checked,
+input[type=text]:hover,
+input[type=password]:hover,
+input[type=radio]:hover,
+input[type=text].empty:hover,
+input[type=password].empty:hover,
+input[type=radio].empty:hover {
   border-color: #666;
 }
 input[type=text].empty,
 input[type=password].empty,
 input[type=radio].empty {
-  border-color: #f99;
+  border-color: rgba(255, 0, 0, 0.4);
 }
 @media only screen and (max-width:479px) {
   input[type=text],
@@ -483,26 +504,28 @@ input[type=submit] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 2px solid #ddd;
+  border: none;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  color: #ddd;
   height: 40px;
-  background: url('images/checked.png') center center no-repeat;
+  background-color: #444;
   margin: 0 auto;
   display: block;
   width: 40px;
   font-weight: bold;
+  text-transform: uppercase;
   cursor: pointer;
   float: left;
   margin-bottom: 20px;
 }
-input[type=submit]:hover,
-input[type=submit]:focus {
-  border-color: #666;
+input[type=submit]:focus,
+input[type=submit]:hover {
+  background-color: #222;
 }
 @media only screen and (max-width:479px) {
   input[type=submit] {
@@ -526,6 +549,10 @@ input[type=submit]:focus {
     width: 100%;
   }
 }
+.splash_screen .login-form input[type=submit] {
+  font-family: "FontAwesome";
+  font-size: 1.8em;
+}
 .splash_screen .signup-form {
   display: none;
 }
@@ -537,6 +564,10 @@ input[type=submit]:focus {
   margin-left: auto;
   margin-right: auto;
   width: 160px;
+}
+.splash_screen .signup-form input[type=submit] {
+  font-size: 1.1em;
+  text-transform: uppercase;
 }
 /*
 == ------------------------------------------------------------------- ==
@@ -636,9 +667,13 @@ input[type=submit]:focus {
 .splash_screen .logo {
   background: url('images/main_logo.jpg');
   background-size: cover;
+  display: block;
   height: 160px;
   width: 160px;
   margin: 0 auto 50px auto;
+  -webkit-opacity: 0.95;
+  -moz-opacity: 0.95;
+  opacity: 0.95;
 }
 .splash_screen h1 {
   margin-bottom: 25px;
@@ -727,6 +762,19 @@ header {
   font-family: "OratorStd";
   font-size: 1.2em;
   text-transform: lowercase;
+  padding-bottom: 25px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+header.dark {
+  background-color: #292929;
+}
+header.dark a {
+  color: #ddd;
+}
+header.dark .main .logo {
+  background-image: url('images/header_logo_dark.png');
 }
 header .meta_bar {
   display: block;
@@ -743,6 +791,32 @@ header .meta_bar:after {
 header .meta_bar a {
   float: right;
   line-height: 2em;
+  margin-left: 15px;
+}
+header .meta_bar a:before {
+  margin-right: 5px;
+  line-height: 1;
+}
+header .meta_bar a.logout:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\f08b';
+}
+header .meta_bar a.my_profile:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\f007';
+  font-size: 0.9em;
+}
+header .meta_bar a.my_profile:after {
+  content: '|';
+  margin-left: 15px;
 }
 header .main {
   display: block;
@@ -758,18 +832,11 @@ header .main:after {
 }
 header .main .logo {
   background: url('images/header_logo.png') no-repeat center center;
+  background-size: 132px 50px;
   display: block;
-  height: 70px;
-  width: 186px;
+  height: 50px;
+  width: 132px;
   float: left;
-  -webkit-opacity: 0.7;
-  -moz-opacity: 0.7;
-  opacity: 0.7;
-}
-header .main .logo:hover {
-  -webkit-opacity: 1;
-  -moz-opacity: 1;
-  opacity: 1;
 }
 header .main .main_menu {
   float: right;
@@ -792,10 +859,73 @@ header .main .main_menu ul li {
 }
 header .main .main_menu ul li a {
   line-height: 2em;
-  margin-top: 22px;
+  margin-top: 10px;
   display: block;
   width: 100%;
   padding: 0 15px;
   text-align: center;
   font-size: 1.2em;
+}
+header .main .main_menu ul li a.home:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\f015';
+}
+header .main .main_menu ul li a.new_poll:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\f055';
+}
+header .main .main_menu ul li a.my_polls:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\f0ca';
+}
+header .main .main_menu ul li a:before {
+  margin-right: 5px;
+  font-size: 0.9em;
+  line-height: 1;
+}
+/*
+== ------------------------------------------------------------------- ==
+== @@ Footer (footer.less)
+== ------------------------------------------------------------------- ==
+*/
+footer .socket {
+  background-color: #222;
+  color: #ddd;
+  font-size: 0.9em;
+  font-weight: bold;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+footer .socket .page_canvas {
+  display: block;
+  zoom: 1;
+  height: 35px;
+  padding-top: 12px;
+}
+footer .socket .page_canvas:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+footer .socket .page_canvas .copyright {
+  float: left;
+}
+footer .socket .page_canvas .developers {
+  float: right;
 }

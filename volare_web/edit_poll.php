@@ -95,7 +95,17 @@
 			
 		</div>
 
-	</div>		
+	</div>
+	
+	<div class="volare_row">
+		
+		<div class="volare_col span_1_of_1">
+			
+			<input type="submit" value="Save">
+			
+		</div>
+		
+	</div>
 
 </form>
 
