@@ -2,7 +2,7 @@
 		
 		</div>
 		
-		<div class="fade footer"></div>		
+<!--		<div class="fade footer"></div>		-->
 		
 		<footer>
 			

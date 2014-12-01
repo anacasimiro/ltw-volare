@@ -17,8 +17,8 @@
 	
 	// Get the 6 latest Polls
 
-	$stmt = $dbh->prepare('SELECT id FROM polls WHERE endDate > ? ORDER BY startDate DESC LIMIT ?');
-	$stmt->execute( array(time(), 6) );
+	$stmt = $dbh->prepare('SELECT id FROM polls');
+	$stmt->execute();
 	$result = $stmt->fetchAll();
 	
 	foreach ( $result as $row ) {

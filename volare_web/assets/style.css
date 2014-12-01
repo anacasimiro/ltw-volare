@@ -340,6 +340,7 @@ body.fixed {
   height: 25px;
   width: 100%;
   position: fixed;
+  z-index: 30;
 }
 .fade.header {
   background-image: url('images/header_fade.png');
@@ -451,7 +452,9 @@ form:after {
 }
 input[type=text],
 input[type=password],
-input[type=radio] {
+input[type=radio],
+a.add_option,
+a.remove_option {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -475,26 +478,45 @@ input[type=radio] {
 input[type=text]:focus,
 input[type=password]:focus,
 input[type=radio]:focus,
+a.add_option:focus,
+a.remove_option:focus,
 input[type=text]:checked,
 input[type=password]:checked,
 input[type=radio]:checked,
+a.add_option:checked,
+a.remove_option:checked,
 input[type=text]:hover,
 input[type=password]:hover,
 input[type=radio]:hover,
+a.add_option:hover,
+a.remove_option:hover,
 input[type=text].empty:hover,
 input[type=password].empty:hover,
-input[type=radio].empty:hover {
+input[type=radio].empty:hover,
+a.add_option.empty:hover,
+a.remove_option.empty:hover {
   border-color: #666;
+}
+input[type=text]:disabled:hover,
+input[type=password]:disabled:hover,
+input[type=radio]:disabled:hover,
+a.add_option:disabled:hover,
+a.remove_option:disabled:hover {
+  border-color: #ddd;
 }
 input[type=text].empty,
 input[type=password].empty,
-input[type=radio].empty {
+input[type=radio].empty,
+a.add_option.empty,
+a.remove_option.empty {
   border-color: rgba(255, 0, 0, 0.4);
 }
 @media only screen and (max-width:479px) {
   input[type=text],
   input[type=password],
-  input[type=radio] {
+  input[type=radio],
+  a.add_option,
+  a.remove_option {
     float: none;
     margin-left: auto;
     margin-right: auto;
@@ -620,7 +642,9 @@ input[type=submit]:hover {
 .edit_poll-form input[type=submit] {
   width: 100px;
 }
-.edit_poll-form input[type=radio] {
+.edit_poll-form input[type=radio],
+.edit_poll-form a.add_option,
+.edit_poll-form a.remove_option {
   width: 45%;
   float: left;
   margin-top: 0;
@@ -628,17 +652,34 @@ input[type=submit]:hover {
   margin-right: 10%;
   cursor: pointer;
 }
-.edit_poll-form input[type=radio]:last-of-type {
+.edit_poll-form input[type=radio]:last-of-type,
+.edit_poll-form a.add_option:last-of-type,
+.edit_poll-form a.remove_option:last-of-type {
   margin-right: 0;
 }
-.edit_poll-form input[type=radio][value=private] {
-  background: url('images/locked.png') no-repeat center center;
+.edit_poll-form input[type=radio]:before {
+  display: block;
+  font-size: 2em;
+  text-align: center;
+  padding-top: 5px;
 }
-.edit_poll-form input[type=radio][value=public] {
-  background: url('images/unlocked.png') no-repeat center center;
+.edit_poll-form input[type=radio].yes:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\f164';
 }
-.edit_poll-form .poll_image {
-  background: url('images/no_image.jpg') no-repeat center center;
+.edit_poll-form input[type=radio].no:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\f165';
+}
+.edit_poll-form .poll_image div {
   border: 2px solid #ddd;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -649,10 +690,64 @@ input[type=submit]:hover {
   height: 227px;
   width: 227px;
   overflow: hidden;
+  position: relative;
 }
-.edit_poll-form .poll_image img {
-  height: 225px;
-  width: 225px;
+.edit_poll-form .poll_image div:hover {
+  border-color: #666;
+}
+.edit_poll-form .poll_image div .image_preview {
+  border: none;
+  height: 227px;
+  width: 227px;
+  max-width: 227px;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+}
+.edit_poll-form .poll_image div .image_input {
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+  background-color: #0f0;
+  display: block;
+  height: 250px;
+  width: 230px;
+  position: absolute;
+  top: -30px;
+}
+.edit_poll-form .poll_image div .image_input:hover {
+  cursor: pointer;
+}
+.edit_poll-form .poll_image div .camera_icon {
+  color: #fff;
+  font-family: "FontAwesome";
+  font-size: 1.6em;
+  border-radius: 3px;
+  background-color: #000;
+  -webkit-opacity: 0.5;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 5px 4px 4px 4px;
+}
+.edit_poll-form a.add_option,
+.edit_poll-form a.remove_option {
+  font-family: "FontAwesome";
+  font-size: 1.7em;
+  text-align: center;
+  padding: 9px 0 0 0;
+}
+.edit_poll-form a.add_option:focus,
+.edit_poll-form a.remove_option:focus {
+  border: 2px solid #ddd;
+}
+.edit_poll-form a.add_option.disabled,
+.edit_poll-form a.remove_option.disabled {
+  background-color: #eee;
+  pointer-events: none;
+  cursor: default;
 }
 /*
 == ------------------------------------------------------------------- ==
@@ -766,6 +861,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 30;
 }
 header.dark {
   background-color: #292929;
@@ -903,11 +999,13 @@ header .main .main_menu ul li a:before {
 footer .socket {
   background-color: #222;
   color: #ddd;
+  border-top: 1px solid #fff;
   font-size: 0.9em;
   font-weight: bold;
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 30;
 }
 footer .socket .page_canvas {
   display: block;

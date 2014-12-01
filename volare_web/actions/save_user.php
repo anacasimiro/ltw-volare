@@ -24,8 +24,12 @@
 	
 	if ( !isset($_POST['username'])	|| $_POST['username'] === '' ) {
 		
+		echo "<script type='text/javascript'>";
 		
-		header("location:" . $_BASE_URL . "edit_user.php?status=empty_fields");
+			echo "alert('Error: Some mandatory fields are empty!');";
+			echo "window.location.href = '" . $_BASE_URL . "edit_user.php'";
+			
+		echo "</script>";
 		die();
 		
 	} else {
@@ -197,14 +201,18 @@
 	
 	if ( $changes ) {
 	
-		$currentUser->saveUser();
+        try {
+            $currentUser->saveUser();
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
 	
 		// Redirect
 	
 		echo "<script type='text/javascript'>";
 		
 			echo "alert('Operation completed successfully!');";
-			echo "window.location.href = '" . $_BASE_URL . "edit_user.php'";
+			echo "window.location.href = '" . $_BASE_URL . "'";
 			
 		echo "</script>";
 		

@@ -23,11 +23,20 @@
 	}
 	
 
-	// Get Poll data
+	// Get Poll object
 
-	$stmt = $dbh->prepare('SELECT * FROM polls WHERE id=(?)');
-	$stmt->execute(array($id));
-	$poll = $stmt->fetch();
+    if ( $id > 0 ) { 
+
+        $poll = Poll::withId( $id );
+        
+        Fb::log( $poll );
+        
+    } else {
+        
+        $poll = new Poll( array() );
+        
+    }
+
 
 ?>
 
@@ -43,8 +52,10 @@
 				
 				<div class="volare_col span_1_of_1">
 					
+                    <input type="hidden" name="id" value="<?php echo $poll->getId(); ?>">
+                    
 					<label>Title</label>
-					<input type="text" name="title" value="">
+					<input type="text" name="title" value="<?php echo $poll->getTitle(); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'disabled'; ?> >
 					
 				</div>
 				
@@ -52,29 +63,52 @@
 			
 			<div class="volare_row">
 				
-				<div class="volare_col span_1_of_2">
+				<div class="volare_col span_1_of_2 poll_options">
 					
 					<label>Options</label>
-					<input type="text" name="option1" placeholder="Option 1" value="">
-					<input type="text" name="option2" placeholder="Option 2" value="">
-					<input type="text" name="option3" placeholder="Option 3" value="">
-					<input type="text" name="option4" placeholder="Option 4" value="">
-					<input type="text" name="option5" placeholder="Option 5" value="">
+					<?php
+
+                        if ( $id ) {
+                            
+                            foreach ( $poll->getOptions() as $option ) {
+                            
+                                echo '<input type="text" name="options[]" placeholder="Option ' . $option['order'] . '" value="' . $option['title'] . '"';
+                                if ( $poll->getStartDate() < time() ) echo ' disabled ';
+                                echo '>';
+                            
+                            } 
+                            
+                        } else {
+                            
+                            echo '<input type="text" name="options[]" placeholder="Option 1" value="">';
+                            echo '<input type="text" name="options[]" placeholder="Option 2" value="">';
+                            
+                        }
+
+                    ?>
+					<a class="add_option" href="#" <?php if ( $poll->getStartDate() < time() && $id ) echo 'style="display:none;"'; ?> >&#xf067;</a>
+                    <a class="remove_option disabled" href="#" <?php if ( $poll->getStartDate() < time() && $id ) echo 'style="display:none;"'; ?> >&#xf068;</a>
 					
 				</div>
 				
 				<div class="volare_col span_1_of_2">
-					
+				
+					<div class="privacy">
+						<label>Is this poll public?</label>
+						<input type="radio" class="yes" name="privacy" value="1" <?php if ( $poll->isPublic() && $id ) echo 'checked'; ?> >
+						<input type="radio" class="no" name="privacy" value="0" <?php if ( !($poll->isPublic()) && $id ) echo 'checked'; ?> >
+					</div>
+                    
 					<label>Start date</label>
-					<input type="text" name="startDate" placeholder="DD/MM/YYYY" value="">
+					<input type="text" name="startDate" placeholder="DD/MM/YYYY" value="<?php if ( $id ) echo date('d/m/Y', $poll->getStartDate()); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'disabled'; ?> >
 					
 					<label>End date</label>
-					<input type="text" name="endDate" placeholder="DD/MM/YYYY" value="">
-					
-					<div class="privacy">
-						<label>Privacy</label><br/>
-						<input type="radio" name="privacy" value="private">
-						<input type="radio" name="privacy" value="public">
+					<input type="text" name="endDate" placeholder="DD/MM/YYYY" value="<?php if ( $id ) echo date('d/m/Y', $poll->getEndDate()); ?>">
+                    
+                    <div class="alerts">
+						<label>Enable email alerts?</label>
+						<input type="radio" class="yes" name="alerts" value="1" <?php if ( $poll->getNotifyOwner() ) echo 'checked'; ?> >
+						<input type="radio" class="no" name="alerts" value="0">
 					</div>
 					
 				</div>
@@ -83,15 +117,16 @@
 			
 		</div>
 		
-		<div class="volare_col span_1_of_3">
+		<div class="volare_col span_1_of_3 poll_image">
 			
 			<label>Image</label>
-			<div class="poll_image">
+			<div>
 				
-				
-				
+				<img class="image_preview" src="" alt="" />
+                <span class="camera_icon">&#xf030;</span>
+                <input type="file" name="image" class="image_input" value="">
+
 			</div>
-			<input type="file" name="poll_image_upload" value="">
 			
 		</div>
 
