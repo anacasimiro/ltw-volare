@@ -497,6 +497,13 @@ a.add_option.empty:hover,
 a.remove_option.empty:hover {
   border-color: #666;
 }
+input[type=text]:disabled,
+input[type=password]:disabled,
+input[type=radio]:disabled,
+a.add_option:disabled,
+a.remove_option:disabled {
+  background-color: #f4f4f4;
+}
 input[type=text]:disabled:hover,
 input[type=password]:disabled:hover,
 input[type=radio]:disabled:hover,

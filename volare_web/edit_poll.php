@@ -29,8 +29,6 @@
 
         $poll = Poll::withId( $id );
         
-        Fb::log( $poll );
-        
     } else {
         
         $poll = new Poll( array() );
@@ -42,7 +40,7 @@
 
 <?php include_once( $_BASE_DIR . 'templates/header.php' ); ?>
 
-<form class="edit_poll-form" action="<?php echo $_BASE_URL ?>actions/save_poll.php" method="post">
+<form enctype="multipart/form-data" class="edit_poll-form" action="<?php echo $_BASE_URL ?>actions/save_poll.php" method="post">
 
 	<div class="volare_row">
 		
@@ -108,7 +106,7 @@
                     <div class="alerts">
 						<label>Enable email alerts?</label>
 						<input type="radio" class="yes" name="alerts" value="1" <?php if ( $poll->getNotifyOwner() ) echo 'checked'; ?> >
-						<input type="radio" class="no" name="alerts" value="0">
+						<input type="radio" class="no" name="alerts" value="0" <?php if ( !($poll->getNotifyOwner()) ) echo 'checked'; ?> >
 					</div>
 					
 				</div>
@@ -124,6 +122,7 @@
 				
 				<img class="image_preview" src="" alt="" />
                 <span class="camera_icon">&#xf030;</span>
+                <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
                 <input type="file" name="image" class="image_input" value="">
 
 			</div>
