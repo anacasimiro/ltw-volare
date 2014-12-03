@@ -33,16 +33,13 @@
 	$changes = 0;
 
     
-    Fb::log( 0 );
-    
-    
     // Check if title is filled
 
 	if ( !isset($_POST['title']) || $_POST['title'] === '' ) {
 		
 		echo "<script type='text/javascript'>";
 		
-			echo "alert('Error: Some mandatory fields are empty!');";
+			echo "alert('Error: The Poll must have a title');";
 			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 			
 		echo "</script>";
@@ -61,15 +58,15 @@
 	
 	}
 
-	Fb::log( 1 );
+    Fb::log('1' . $changes);
 
 	// Check if privacy is specified
 	
-	if ( !isset($_POST['privacy']) || ( $_POST['privacy'] !== 1 && $_POST['privacy'] !== 0 ) ) {
+	if ( !isset($_POST['privacy']) || ( $_POST['privacy'] !== '1' && $_POST['privacy'] !== '0' ) ) {
 		
 		echo "<script type='text/javascript'>";
 		
-			echo "alert('Error: Some mandatory fields are empty!');";
+			echo "alert('Error: You must choose an option concerning privacy!');";
 			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 			
 		echo "</script>";
@@ -88,15 +85,15 @@
 		
 	}
 	
-	Fb::log( 2 );
-	
+    Fb::log('2' . $changes);
+
 	// Check if start date is specified
 	
 	if ( !isset($_POST['startDate']) || $_POST['startDate'] === '' ) {
 		
 		echo "<script type='text/javascript'>";
 		
-			echo "alert('Error: Some mandatory fields are empty!');";
+			echo "alert('Error: A start date must be specified!');";
 			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 			
 		echo "</script>";
@@ -129,15 +126,15 @@
 		
 	}
 	
-	Fb::log( 3 );
-	
+    Fb::log('3' . $changes);
+
 	// Check if end date is specified
 	
 	if ( !isset($_POST['endDate']) || $_POST['endDate'] === '' ) {
 		
 		echo "<script type='text/javascript'>";
 		
-			echo "alert('Error: Some mandatory fields are empty!');";
+			echo "alert('Error: An end date must be specified!');";
 			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 			
 		echo "</script>";
@@ -170,14 +167,15 @@
 		
 	}
 	
+    Fb::log('4' . $changes);
 	
 	// Check if alerts are specified
 	
-	if ( !isset($_POST['alerts']) || ( $_POST['alerts'] !== 1 && $_POST['alerts'] !== 0 ) ) {
+	if ( !isset($_POST['alerts']) || ( $_POST['alerts'] !== '1' && $_POST['alerts'] !== '0' ) ) {
 		
 		echo "<script type='text/javascript'>";
 		
-			echo "alert('Error: Some mandatory fields are empty!');";
+			echo "alert('Error: You must choose an option concerning email alerts!');";
 			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 			
 		echo "</script>";
@@ -187,7 +185,7 @@
 		
 		$alerts = $_POST['alerts'];
 		
-		if ( $alerts !== $poll->notifyOwner() ) {
+		if ( $alerts !== $poll->getNotifyOwner() ) {
 			
 			$changes = 1;
 			$poll->setNotifyOwner( $alerts );
@@ -195,11 +193,13 @@
 		}
 		
 	}
-	
+
+    Fb::log('5' . $changes);
 	
 	// Check if image is specified
 	
-	if ( !isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK ) {
+
+	if ( !isset($_FILES['image']) || ( $_FILES['image']['error'] !== UPLOAD_ERR_OK && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE ) ) {
 		
 		echo "<script type='text/javascript'>";
 		
@@ -210,41 +210,61 @@
 		die();
 		
 	}
+
+    if ( $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE ) {
 		
-	$image_info = getimagesize($_FILES['file']['tmp_name']);
-	$upload_dir = $_BASE_DIR . 'data/images/';
+        $image_info = getimagesize($_FILES['image']['tmp_name']);
+        $upload_dir = 'data/images/';
+
+        if ( $image_info === FALSE ) {
+
+            echo "<script type='text/javascript'>";
+
+                echo "alert('Error: Unable to determine image type of uploaded file');";
+                echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+
+            echo "</script>";
+            die();
+
+        }
+
+        if ( ($image_info[2] !== IMAGETYPE_JPEG) && ($image_info[2] !== IMAGETYPE_PNG) ) {
+
+            echo "<script type='text/javascript'>";
+
+                echo "alert('Error: The format of the uploaded image is not supported!');";
+                echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+
+            echo "</script>";
+            die();
+
+        }
+        
+        
+    }
+        
+    if ( $image_info ) {
+
+        $changes = 1;
+        move_uploaded_file($_FILES['image']['tmp_name'], $_BASE_DIR . $upload_dir . $_FILES['image']['name']);
+        $poll->setImage( $upload_dir . $_FILES['image']['name'] );
+
+    } else {
+
+        if ( !$poll->getImage() ) {
+            
+            echo "<script type='text/javascript'>";
+
+                echo "alert('Error: The Poll must have an image!');";
+                echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+
+            echo "</script>";
+            die();
+            
+        }
+
+    }
 		
-	if ( $image_info === FALSE ) {
-		
-		echo "<script type='text/javascript'>";
-		
-			echo "alert('Error: Unable to determine image type of uploaded file');";
-			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
-			
-		echo "</script>";
-		die();
-		
-	}
-	
-	if ( ($image_info[2] !== IMAGETYPE_JPEG) && ($image_info[2] !== IMAGETYPE_PNG) ) {
-		
-		echo "<script type='text/javascript'>";
-		
-			echo "alert('Error: The format of the uploaded image is not supported!');";
-			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
-			
-		echo "</script>";
-		die();
-		
-	}
-	
-	if ( !($poll->getImage()) ) {
-		
-		$changes = 1;
-		move_uploaded_file($_FILES['image']['tmp_name'], $upload_dir . $_FILES['image']['name']);
-		$poll->setImage( $upload_dir . $_FILES['image']['name'] );
-		
-	}
 
 
 
@@ -301,7 +321,7 @@
 		echo "<script type='text/javascript'>";
 		
 			echo "alert('Operation completed successfully!');";
-			echo "window.location.href = '" . $_BASE_URL . "'";
+			//echo "window.location.href = '" . $_BASE_URL . "'";
 			
 		echo "</script>";
 		
@@ -317,6 +337,6 @@
 		echo "</script>";
 		
 	}
-
+    
 
 ?>

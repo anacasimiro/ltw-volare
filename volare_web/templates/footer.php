@@ -10,9 +10,9 @@
 				
 				<div class="page_canvas">
 				
-					<span class="copyright">2014 Volare &#169 All rights reserved</span>
+					<span class="copyright">2014 Volare &#169; All rights reserved</span>
 					
-					<span class="developers">Developed by: Ana Casimiro & João Bernardino</span>
+					<span class="developers">Developed by: Ana Casimiro &#38;&#38; João Bernardino</span>
 					
 				</div>
 				

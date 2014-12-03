@@ -53,7 +53,7 @@
                     <input type="hidden" name="id" value="<?php echo $poll->getId(); ?>">
                     
 					<label>Title</label>
-					<input type="text" name="title" value="<?php echo $poll->getTitle(); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'disabled'; ?> >
+					<input type="text" name="title" value="<?php echo $poll->getTitle(); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'readonly="readonly"'; ?> >
 					
 				</div>
 				
@@ -71,7 +71,7 @@
                             foreach ( $poll->getOptions() as $option ) {
                             
                                 echo '<input type="text" name="options[]" placeholder="Option ' . $option['order'] . '" value="' . $option['title'] . '"';
-                                if ( $poll->getStartDate() < time() ) echo ' disabled ';
+                                if ( $poll->getStartDate() < time() ) echo ' readonly="readonly" ';
                                 echo '>';
                             
                             } 
@@ -98,15 +98,15 @@
 					</div>
                     
 					<label>Start date</label>
-					<input type="text" name="startDate" placeholder="DD/MM/YYYY" value="<?php if ( $id ) echo date('d/m/Y', $poll->getStartDate()); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'disabled'; ?> >
+					<input type="text" name="startDate" placeholder="mm/dd/yyyy" value="<?php if ( $id ) echo date('m/d/Y', $poll->getStartDate()); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'readonly="readonly"'; ?> >
 					
 					<label>End date</label>
-					<input type="text" name="endDate" placeholder="DD/MM/YYYY" value="<?php if ( $id ) echo date('d/m/Y', $poll->getEndDate()); ?>">
+					<input type="text" name="endDate" placeholder="mm/dd/yyyy" value="<?php if ( $id ) echo date('m/d/Y', $poll->getEndDate()); ?>">
                     
                     <div class="alerts">
 						<label>Enable email alerts?</label>
-						<input type="radio" class="yes" name="alerts" value="1" <?php if ( $poll->getNotifyOwner() ) echo 'checked'; ?> >
-						<input type="radio" class="no" name="alerts" value="0" <?php if ( !($poll->getNotifyOwner()) ) echo 'checked'; ?> >
+						<input type="radio" class="yes" name="alerts" value="1" <?php if ( $poll->getNotifyOwner() && $id ) echo 'checked'; ?> >
+						<input type="radio" class="no" name="alerts" value="0" <?php if ( !($poll->getNotifyOwner()) && $id ) echo 'checked'; ?> >
 					</div>
 					
 				</div>
@@ -120,9 +120,9 @@
 			<label>Image</label>
 			<div>
 				
-				<img class="image_preview" src="" alt="" />
+				<img class="image_preview" src="<?php if ( $poll->getImage() ) echo $_BASE_URL . $poll->getImage(); ?>" alt="" />
                 <span class="camera_icon">&#xf030;</span>
-                <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
                 <input type="file" name="image" class="image_input" value="">
 
 			</div>

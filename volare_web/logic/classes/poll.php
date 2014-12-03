@@ -282,9 +282,9 @@
 			foreach( $this->options as $option ) {
 				
 				if ( $option['id'] > 0 ) {
-					updateOption( $option );
+					$this->updateOption( $option );
 				} else {
-					insertOption( $option );
+					$this->insertOption( $option );
 				}
 				
 			}

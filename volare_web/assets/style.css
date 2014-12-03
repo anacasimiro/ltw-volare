@@ -562,6 +562,14 @@ input[type=submit]:hover {
     width: 160px;
   }
 }
+input[readonly="readonly"] {
+  background-color: #f4f4f4;
+}
+input[readonly="readonly"]:hover,
+input[readonly="readonly"]:checked,
+input[readonly="readonly"]:focus {
+  border-color: #ddd;
+}
 /*
 == ------------------------------------------------------------------- ==
 == @@ Login and Signup Forms (forms.less)
