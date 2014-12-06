@@ -21,6 +21,8 @@ header {
 		
 		a { color: #ddd; }
 		
+		a.active { color: #999; }
+		
 		.main .logo {
 			
 			background-image: url('images/header_logo_dark.png');
@@ -29,15 +31,15 @@ header {
 		
 	}
 	
-	.meta_bar {
+	.meta_links {
 	
-		.clearfix();
+		float: right;
 		
 		a {
 			
-			float: right;
 			line-height: 2em;
-			margin-left: 15px;
+			
+			&.logout { margin-left: 6px; }
 			
 			&:before {
 
@@ -104,9 +106,10 @@ header {
 						text-align: center;
 						font-size: 1.2em;
 						
-						&.home:before { .font-awesome('f015'); }
-						&.new_poll:before { .font-awesome('f055'); }
-						&.my_polls:before { .font-awesome('f0ca'); }
+						&.home:before		{ .font-awesome('f015'); }
+						&.new_poll:before	{ .font-awesome('f055'); }
+						&.voted:before		{ .font-awesome('f058'); }
+						&.my_polls:before	{ .font-awesome('f0ca'); }
 						
 						&:before {
 							
@@ -126,4 +129,75 @@ header {
 		
 	}
 	
+	@media only screen and (max-width:600px) {
+		
+		padding-bottom: 10px;
+		position: static;
+		
+		.meta_bar {
+			
+			height: 40px;
+			padding-top: 8px;
+			
+			
+			.meta_links {
+				
+				position: relative;
+				left: 50%;
+				width: 100%;
+				
+				a {
+					
+					font-size: 0.9em;
+					
+				}
+				
+			}
+			
+		}
+		
+		.main {
+			
+			.logo {
+				
+				float: none;
+				margin: 10px auto;
+				
+			}
+			
+			.main_menu {
+				
+				float: none;
+				//position: relative;
+				
+				ul {
+					
+					position: relative;
+					left: 50%;
+					width: 100%;
+					margin: 0;
+					
+					li {
+						
+						a {
+							
+							padding: 0 10px;
+							font-size: 1em;
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+	
 }
+
+
+
+

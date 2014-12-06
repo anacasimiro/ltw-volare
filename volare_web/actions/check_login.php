@@ -53,7 +53,7 @@
 		
 		echo "<script type='text/javascript'>";
 		
-			echo "alert('Error: Invalid Password!');";
+			echo "alert('Error: Wrong Password!');";
 			echo "window.location.href = '" . $_BASE_URL . "login.php'";
 			
 		echo "</script>";

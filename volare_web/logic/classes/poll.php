@@ -49,7 +49,7 @@
 		public function getStartDate()		{ return $this->startDate;		}
 		public function getEndDate()		{ return $this->endDate;		}
 		public function getOptions()		{ return $this->options;		}
-		public function getAnswers()		{ return $this->options;		}
+		public function getAnswers()		{ return $this->answers;		}
 		
 		
 		// Setters
@@ -69,43 +69,6 @@
 		
 		
 		// Static methods
-
-		public static function getAll() {
-
-			
-			// Database connection
-			
-			global $dbh;
-			
-			
-			// Get Polls data from database
-			
-			$stmt = $dbh->prepare('SELECT * FROM polls');
-			$stmt->execute();
-			$pollsData = $stmt->fetchAll();
-			
-			
-			// Create instances of class Poll
-			
-			foreach( $pollsData as $pollData ) {
-				$polls[] = new Poll( $pollData );
-			}
-			
-			
-			// Get Polls options from database
-			
-			foreach ( $polls as $poll ) {
-				
-				$stmt = $dbh->prepare('SELECT * FROM pollOptions WHERE pollId = ?');
-				$stmt->execute( array( $poll->getId() ) );
-				$poll->setOptions( $stmt->fetchAll() );
-				
-			}
-
-
-			return $polls;
-
-		}
 
 		public static function withId( $id ) {
 			
@@ -127,6 +90,13 @@
 			$stmt = $dbh->prepare('SELECT * FROM pollOptions WHERE pollId = ?');
 			$stmt->execute(array($id));
 			$pollData['options'] = $stmt->fetchAll();
+			
+			
+			// Get Poll answers from database
+			
+			$stmt = $dbh->prepare('SELECT * FROM answers WHERE pollId = ?');
+			$stmt->execute(array($id));
+			$pollData['answers'] = $stmt->fetchAll();
 			
 			
 			// Create new instance of class Poll
@@ -159,7 +129,13 @@
 			
 			$stmt = $dbh->prepare('DELETE FROM pollOptions WHERE pollId = ?');
 			$stmt->execute(array( $this->id ));
-
+			
+			
+			// Remove Poll answers from database
+			
+			$stmt = $dbh->prepare('DELETE FROM answers WHERE pollId = ?');
+			$stmt->execute(array( $this->id ));
+			
 		}
 
 		public function savePoll() {
@@ -227,7 +203,7 @@
 			
 			foreach( $this->options as $option ) {
 				
-				insertOption( $option );
+				$this->insertOption( $option );
 
 			}
 				
@@ -277,43 +253,16 @@
 			));
 			
 			
-			// Update/insert Poll options into database
+			// Delete old Poll options from database
+			
+			$stmt = $dbh->prepare( 'DELETE FROM pollOptions WHERE pollId = ?' );
+			$stmt->execute(array( $this->id ));
+			
+			
+			// Insert Poll options into database
 			
 			foreach( $this->options as $option ) {
-				
-				if ( $option['id'] > 0 ) {
-					$this->updateOption( $option );
-				} else {
-					$this->insertOption( $option );
-				}
-				
-			}
-			
-			
-			// Update/insert Poll answers into database
-			
-			foreach( $this->answers as $answer ) {
-				
-				$stmt = $dbh->prepare('
-				
-					INSERT OR REPLACE INTO answers (
-						
-						"userId",
-						"pollId",
-						"optionId"
-						
-					) VALUES (?, ?, ?)
-					
-				');
-				
-				$stmt->execute(array(
-					
-					$answer['userId'],
-					$answer['pollId'],
-					$answer['optionId']
-					
-				));
-				
+				$this->insertOption( $option );	
 			}
 			
 		}
@@ -350,100 +299,38 @@
 			
 		}
 		
-		private function updateOption( $option ) {
+		public function saveAnswers() {
 			
 			// Database connection
 			
 			global $dbh;
 			
 			
-			// Update Poll option in database
+			// Update Answers in database
 			
-			$stmt = $dbh->prepare('
+			foreach ( $this->answers as $answer ) {
 			
-				UPDATE pollOptions SET
+				$stmt = $dbh->prepare('
+				
+					INSERT OR REPLACE INTO answers (
+						
+						"userId",
+						"pollId",
+						"optionId"
+						
+					) VALUES (?, ?, ?)
 					
-					"title" = ?,
-					"order" = ?,
-					"pollId" = ?
+				');
+				
+				$stmt->execute(array(
 					
-				WHERE id = ?
-			
-			');
-			
-			$stmt->execute(array(
-				
-				$option['title'],
-				$option['order'],
-				$option['pollId'],
-				$option['id']
-				
-			));
-			
-		}
-		
-		private function insertAnswer( $answer ) {
-			
-			// Database connection
-			
-			global $dbh;
-			
-			
-			// Insert Answer into database
-			
-			$stmt = $dbh->prepare('
-			
-				INSERT INTO answers (
-
-					"userId",
-					"pollId",
-					"optionId"
+					$answer['userId'],
+					$answer['pollId'],
+					$answer['optionId']
 					
-				) VALUES (?, ?, ?)
-			
-			');
-			
-			$stmt->execute(array(
+				));
 				
-				$answer['userId'],
-				$answer['pollId'],
-				$answer['optionId']
-				
-			));
-			
-		}
-		
-		private function updateAnswer( $answer ) {
-			
-			// Database connection
-			
-			global $dbh;
-			
-			
-			// Update Answer in database
-			
-			$stmt = $dbh->prepare('
-			
-				UPDATE answers SET
-
-					"userId" = ?,
-					"pollId" = ?,
-					"optionId = ?"
-					
-				WHERE userId = ? AND optionId = ?
-			
-			');
-			
-			$stmt->execute(array(
-				
-				$answer['userId'],
-				$answer['pollId'],
-				$answer['optionId'],
-				$answer['userId'],
-				$answer['optionId']
-				
-				
-			));
+			}
 			
 		}
 

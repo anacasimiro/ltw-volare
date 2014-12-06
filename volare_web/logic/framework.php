@@ -1,7 +1,8 @@
 <?php
 
-$_BASE_DIR = 'C:/Program Files (x86)/Ampps/www/volare/';
-$_BASE_URL = 'http://localhost/volare/';
+$_BASE_DIR = '/Users/Joao/FEUP/LTW/ltw-volare/volare_web/';
+$_BASE_URL = 'http://192.168.1.87:8888/';
+
 $_DB_PATH  = 'data/database.sqlite';
 
 

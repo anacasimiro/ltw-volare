@@ -27,10 +27,11 @@
         
     }
 
-
 	// Intialize changes flag
 	
 	$changes = 0;
+
+
 
     
     // Check if title is filled
@@ -58,7 +59,8 @@
 	
 	}
 
-    Fb::log('1' . $changes);
+
+
 
 	// Check if privacy is specified
 	
@@ -85,7 +87,8 @@
 		
 	}
 	
-    Fb::log('2' . $changes);
+
+
 
 	// Check if start date is specified
 	
@@ -103,11 +106,11 @@
 		
 		$startDate = strtotime( $_POST['startDate'] );
 		
-		if ( !$startDate ) {
+		if ( !$startDate || strlen($_POST['startDate']) != 16 ) {
 			
 			echo "<script type='text/javascript'>";
 			
-				echo "alert('Error: Invalid date format!');";
+				echo "alert('Error: Invalid start date!');";
 				echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 				
 			echo "</script>";
@@ -115,7 +118,7 @@
 			
 		} else {
 			
-			if ( $startDate !== $poll->getStartDate() ) {
+			if ( $startDate != $poll->getStartDate() ) {
 			
 				$changes = 1;
 				$poll->setStartDate( $startDate );
@@ -126,7 +129,8 @@
 		
 	}
 	
-    Fb::log('3' . $changes);
+
+
 
 	// Check if end date is specified
 	
@@ -144,11 +148,11 @@
 		
 		$endDate = strtotime( $_POST['endDate'] );
 		
-		if ( !$startDate ) {
+		if ( !$endDate || strlen($_POST['endDate']) != 16 ) {
 			
 			echo "<script type='text/javascript'>";
 			
-				echo "alert('Error: Invalid date format!');";
+				echo "alert('Error: Invalid end date!');";
 				echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 				
 			echo "</script>";
@@ -156,7 +160,7 @@
 			
 		} else {
 			
-			if ( $startDate !== $poll->getEndDate() ) {
+			if ( $endDate != $poll->getEndDate() ) {
 			
 				$changes = 1;
 				$poll->setEndDate( $endDate );
@@ -167,7 +171,49 @@
 		
 	}
 	
-    Fb::log('4' . $changes);
+	
+	
+	
+	// Check if start and end dates are valid
+	
+	if ( $poll->getStartDate() >= $poll->getEndDate() ) {
+		
+		echo "<script type='text/javascript'>";
+		
+			echo "alert('Error: Start date must be before the end date!');";
+			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+			
+		echo "</script>";
+		die();
+		
+	}
+	
+	if ( $poll->getId() == 0 && $startDate < time() ) {
+		
+		echo "<script type='text/javascript'>";
+		
+			echo "alert('Error: Start date cannot be before the current time!');";
+			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+			
+		echo "</script>";
+		die();
+		
+	}
+	
+	if ( $endDate <= time() ) {
+		
+		echo "<script type='text/javascript'>";
+		
+			echo "alert('Error: End date cannot be before the current time!');";
+			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+			
+		echo "</script>";
+		die();
+		
+	}
+	
+ 
+ 
 	
 	// Check if alerts are specified
 	
@@ -194,20 +240,34 @@
 		
 	}
 
-    Fb::log('5' . $changes);
+
+
 	
 	// Check if image is specified
-	
 
-	if ( !isset($_FILES['image']) || ( $_FILES['image']['error'] !== UPLOAD_ERR_OK && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE ) ) {
+	if ( ( !isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK ) && !$poll->getImage() ) {
 		
-		echo "<script type='text/javascript'>";
+		if ( isset($_FILES['image']) && ( $_FILES['image']['error'] === UPLOAD_ERR_INI_SIZE || $_FILES['image']['error'] === UPLOAD_ERR_FORM_SIZE ) ) {
 		
-			echo "alert('Error: Upload failed with error code " . $_FILES['image']['error'] . "');";
-			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+			echo "<script type='text/javascript'>";
 			
-		echo "</script>";
-		die();
+				echo "alert('Error: The uploaded file exceeds the max size (2MB)!');";
+				echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+				
+			echo "</script>";
+			die();
+		
+		} else {
+			
+			echo "<script type='text/javascript'>";
+			
+				echo "alert('Error: Upload failed with error code " . $_FILES['image']['error'] . "');";
+				echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+				
+			echo "</script>";
+			die();
+			
+		}
 		
 	}
 
@@ -220,7 +280,7 @@
 
             echo "<script type='text/javascript'>";
 
-                echo "alert('Error: Unable to determine image type of uploaded file');";
+                echo "alert('Error: The uploaded file does not seem to be an image!');";
                 echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 
             echo "</script>";
@@ -228,11 +288,11 @@
 
         }
 
-        if ( ($image_info[2] !== IMAGETYPE_JPEG) && ($image_info[2] !== IMAGETYPE_PNG) ) {
+        if ( ($image_info[2] !== IMAGETYPE_JPEG) && ($image_info[2] !== IMAGETYPE_PNG) && ($image_info[2] !== IMAGETYPE_GIF) ) {
 
             echo "<script type='text/javascript'>";
 
-                echo "alert('Error: The format of the uploaded image is not supported!');";
+                echo "alert('Error: Only images in JPEG, PNG and GIF formats are supported!');";
                 echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 
             echo "</script>";
@@ -243,7 +303,7 @@
         
     }
         
-    if ( $image_info ) {
+    if ( isset($image_info) && $image_info !== '' ) {
 
         $changes = 1;
         move_uploaded_file($_FILES['image']['tmp_name'], $_BASE_DIR . $upload_dir . $_FILES['image']['name']);
@@ -268,15 +328,24 @@
 
 
 
+	// Set creation date
+	
+	if ( !$poll->getId() ) {
+		
+		$poll->setCreationDate( time() );
+		
+	}
+
+
+
 
     // Check if options are filled
-/*
 
 	if ( !isset($_POST['options']) || sizeof($_POST['options']) < 2 ) {
 		
 		echo "<script type='text/javascript'>";
 		
-			echo "alert('Error: Some mandatory fields are empty!');";
+			echo "alert('Error: The Poll must have at least 2 options!');";
 			echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
 			
 		echo "</script>";
@@ -284,24 +353,85 @@
 		
 	} else {
 		
-		$options_count = 1;
+		if ( !$poll->getId() ) {
+			
+			$stmt = $dbh->prepare( 'BEGIN TRANSACTION' );
+			$stmt->execute();
+			
+			$stmt = $dbh->prepare( 'INSERT INTO polls (title) VALUES (?)' );
+			$stmt->execute(array( "dummy" ));
+			
+			$stmt = $dbh->prepare( 'SELECT * FROM polls ORDER BY id DESC LIMIT 1' );
+			$stmt->execute();
+			
+			
+			$new_id = $stmt->fetch()['id'];
+			
+			$stmt = $dbh->prepare( 'ROLLBACK' );
+			$stmt->execute();
+			
+		}
+		
+		
+		$options_count = 0;
 		
 		foreach ($_POST['options'] as $option ) {
+			
+			if ( $option !== '' ) {
             
-            $options[] = array(
-            
-                "title" => $option,
-                "order" => $options_count++,
-                "pollId" => $poll,
-                
-            );
+	            $options[] = array(
+	            
+	                "title" => $option,
+	                "order" => ++$options_count,
+	                "pollId" => $poll->getId() ? $poll->getId() : $new_id
+	                
+	            );
+
+			}
             
         }
         
-	
+        if ( $options_count < 2 ) {
+	        
+			echo "<script type='text/javascript'>";
+			
+				echo "alert('Error: The Poll must have at least 2 options!');";
+				echo "window.location.href = '" . $_BASE_URL . "edit_poll.php?id=" . $poll->getId() . "'";
+				
+			echo "</script>";
+			die();
+	        
+        } else {
+	        
+	        $currentOptions = $poll->getOptions();
+	        
+	        foreach ( $currentOptions as &$currentOption ) {
+		        
+		        unset( $currentOption['id'] );
+		        
+	        }
+	        
+	        if ( $options != $currentOptions ) {
+		        
+		        $changes = 1;
+		        $poll->setOptions( $options );
+		        
+	        }
+	        
+        }
+        
 	}
-*/
-
+	
+	
+	
+	
+	// Set Poll OwnerId
+	
+	if ( !$poll->getOwnerId() ) {
+		
+		$poll->setOwnerId( $currentUser->getId() );
+		
+	}
 
 
 	
@@ -321,7 +451,7 @@
 		echo "<script type='text/javascript'>";
 		
 			echo "alert('Operation completed successfully!');";
-			//echo "window.location.href = '" . $_BASE_URL . "'";
+			echo "window.location.href = '" . $_BASE_URL . "'";
 			
 		echo "</script>";
 		

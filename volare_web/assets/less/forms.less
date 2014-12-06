@@ -201,6 +201,13 @@ input[readonly="readonly"] {
 
 .edit_poll-form {
 	
+	.alerts cite {
+		
+		display: block;
+		font-size: 0.9em;
+		
+	}
+	
 	input { float: none; }
 	
 	label { padding-left: 5px; }
@@ -297,6 +304,12 @@ input[readonly="readonly"] {
                     cursor: pointer;
                     
                 }
+                
+                div > &:focus {
+	                
+	                border-color: #ddd;
+	                
+                }
 
             }
             
@@ -327,7 +340,7 @@ input[readonly="readonly"] {
         text-align: center;
         padding: 9px 0 0 0;
         
-        &:focus {
+        &:target {
             
             border: 2px solid #ddd;
             
@@ -344,6 +357,36 @@ input[readonly="readonly"] {
     }
 
 }
+
+
+/*
+== ------------------------------------------------------------------- ==
+== @@ Search form (forms.less)
+== ------------------------------------------------------------------- ==
+*/
+
+.search_form {
+	
+	input[type="text"] {
+		
+		margin-right: 10px;
+		
+	}
+	
+	input[type=submit] {
+		
+		font-family: "FontAwesome";
+		font-size: 1.6em;
+		
+	}
+	
+}
+
+
+
+
+
+
 
 
 

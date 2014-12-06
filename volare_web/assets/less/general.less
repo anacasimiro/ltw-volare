@@ -15,6 +15,7 @@ body {
 	
 	//height: 100%;
 	padding-bottom: 35px;
+	//background-color: red;
 	
 	&.fixed {
 		
@@ -22,29 +23,30 @@ body {
 		
 	}
 	
-}
-
-.fade {
-
-	background-repeat: repeat-x;
-	height: 25px;
-	width: 100%;
-	position: fixed;
-    z-index: 30;
-	
-	&.header {
+	@media only screen and (max-width:600px) {
 		
-		background-image: url('images/header_fade.png');
-		background-position: center bottom;
-		top: 103px;	
+		padding-bottom: 0;
+		
+		&.fixed { padding-top: 0; }
 		
 	}
 	
-	&.footer {
+}
+
+.fade.header {
+
+	height: 25px;
+	width: 100%;
+	position: fixed;
+    z-index: 30;		
+	background-image: url('images/header_fade.png') repeat-x;
+	background-position: center bottom;
+	top: 103px;
+	
+	
+	@media only screen and (max-width:600px) {
 		
-		background-image: url('images/footer_fade.png');
-		bottom: 35px;
-		height: 25px;
+		display: none;
 		
 	}
 	
@@ -55,7 +57,13 @@ body {
 	//background-color: #0a0;
 	
 	//height: 100%;
-	padding: 50px 0;
+	padding-top: 50px;
+	
+	@media only screen and (max-width:600px) {
+		
+		min-height: 800px;
+		
+	}
 	
 }
 
@@ -67,31 +75,22 @@ body {
 	width: 760px;
 	
 	@media only screen and (max-width:849px) {
-		width: 85%;
+		width: 90%;
 	}
 
 }
 
-.poll_list {
+.align_wrapper {
 	
+	.clearfix();
 	
-	article {
-	
-		border: 1px solid #ddd;
-		margin-bottom: 20px;
-		padding: 10px;
-		.clearfix();
-		
-		div {
-
-			float: left;
-			padding: 0 5px;
+	@media only screen and (max-width:600px) {
 			
-			&.title { width: 80%; }
-			&.link { width: 20%; text-align: right; }
-					
-		}
+		float: right;
+		position: relative;
+		left: -50%;
 		
 	}
-
+	
 }
+

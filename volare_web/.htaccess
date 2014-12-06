@@ -1,0 +1,8 @@
+<Files .htaccess> 
+order allow,deny 
+deny from all 
+</Files>
+
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+php_value upload_max_filesize 2M

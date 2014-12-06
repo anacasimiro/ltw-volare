@@ -1,3 +1,11 @@
+<?php
+	
+	// Get current page
+	
+	$currentPage = basename($_SERVER['PHP_SELF']);
+	
+?>
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 
@@ -9,12 +17,16 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo $_BASE_URL ?>assets/style.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo $_BASE_URL ?>assets/plugins/font-awesome/css/font-awesome.css" />
 		<link rel="shortcut icon" type="image/png" href="<?php echo $_BASE_URL ?>assets/images/favicon.png"/>
+		
+		<!--[if lt IE 9]>
+		    <script src="../assets/plugins/html5shiv/html5shiv.js"></script>
+		<![endif]-->
 
 	</head>
 
-	<body <?php if ( basename($_SERVER['PHP_SELF']) != 'login.php' ) { echo 'class="fixed"'; } ?>>
+	<body <?php if ( $currentPage != 'login.php' ) { echo 'class="fixed"'; } ?>>
 		
-		<?php if ( basename($_SERVER['PHP_SELF']) != 'login.php' ) {
+		<?php if ( $currentPage != 'login.php' ) {
 		
 			echo '<header class="dark">';
 				
@@ -22,9 +34,29 @@
 				
 					echo '<div class="meta_bar">';
 					
-						echo '<a class="logout" href="' . $_BASE_URL . 'actions/logout.php">Logout</a>';
+						echo '<div class="align_wrapper">';
+					
+							echo '<div class="meta_links">';
 						
-						echo '<a class="my_profile" href="' . $_BASE_URL . 'edit_user.php">' . $currentUser->getUsername() . '</a>';
+		?>
+		
+		<?php
+						
+								echo '<a class="my_profile';
+								
+								if ( $currentPage == 'edit_user.php' ) echo ' active';
+								
+								echo '" href="' . $_BASE_URL . 'edit_user.php">' . $currentUser->getUsername() . '</a>';
+						
+		?>
+		
+		<?php
+			
+								echo '<a class="logout" href="' . $_BASE_URL . 'actions/logout.php">Logout</a>';
+					
+							echo '</div>';
+					
+						echo '</div>';
 					
 					echo '</div>';
 					
@@ -34,13 +66,37 @@
 					
 						echo '<nav class="main_menu">';
 						
-							echo '<ul>';
+							echo '<div class="align_wrapper">';
+						
+								echo '<ul>';
 							
-								echo '<li><a class="home" href="' . $_BASE_URL . '">Home</a></li>';
-								echo '<li><a class="new_poll" href="' . $_BASE_URL . 'edit_poll.php?id=0">New Poll</a></li>';
-								echo '<li><a class="my_polls" href="' . $_BASE_URL . '">My Polls</a></li>';
+		?>
+		
+		<?php
 							
-							echo '</ul>';
+									echo '<li><a class="home';
+									if ( $currentPage == 'index.php' ) echo ' active';
+									echo '" href="' . $_BASE_URL . '">Home</a></li>';
+									
+									echo '<li><a class="new_poll';
+									if ( $currentPage == 'edit_poll.php' && isset($_GET['id']) && $_GET['id'] == 0 ) echo ' active';
+									echo '" href="' . $_BASE_URL . 'edit_poll.php?id=0">New Poll</a></li>';
+									
+									echo '<li><a class="voted';
+									if ( $currentPage == 'voted.php' ) echo ' active';
+									echo '" href="' . $_BASE_URL . 'voted.php">Voted Polls</a></li>';
+									
+									echo '<li><a class="my_polls';
+									if ( $currentPage == 'my_polls.php' ) echo ' active';
+									echo '" href="' . $_BASE_URL . 'my_polls.php">My Polls</a></li>';
+								
+		?>
+		
+		<?php
+							
+								echo '</ul>';
+								
+							echo '</div>';
 						
 						echo '</nav>';
 						

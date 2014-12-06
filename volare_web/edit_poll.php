@@ -34,11 +34,31 @@
         $poll = new Poll( array() );
         
     }
+    
+
+	// Redirect if poll already ended
+	
+	if ( $id > 0 && $poll->getEndDate() <= time() ) {
+		
+		header("location:" . $_BASE_URL);
+		
+	}
+	
+	
+	// Redirect if poll doesn't belong to current user
+	
+	if ( $poll->getId() && $poll->getOwnerId() != $currentUser->getId() ) {
+		
+		header("location:" . $_BASE_URL . "403.php");
+		
+	}
 
 
 ?>
 
 <?php include_once( $_BASE_DIR . 'templates/header.php' ); ?>
+
+<?php if ( !$id ) echo '<h2>What do you want to ask this time?</h2	>'; ?>
 
 <form enctype="multipart/form-data" class="edit_poll-form" action="<?php echo $_BASE_URL ?>actions/save_poll.php" method="post">
 
@@ -84,8 +104,8 @@
                         }
 
                     ?>
-					<a class="add_option" href="#" <?php if ( $poll->getStartDate() < time() && $id ) echo 'style="display:none;"'; ?> >&#xf067;</a>
-                    <a class="remove_option disabled" href="#" <?php if ( $poll->getStartDate() < time() && $id ) echo 'style="display:none;"'; ?> >&#xf068;</a>
+					<a title="Add option" class="add_option <?php if ( sizeof($poll->getOptions()) >= 5 ) echo 'disabled' ?>" href="#" <?php if ( $poll->getStartDate() < time() && $id ) echo 'style="display:none;"'; ?> >&#xf067;</a>
+                    <a title="Remove option" class="remove_option <?php if ( sizeof($poll->getOptions()) <= 2 ) echo 'disabled' ?>" href="#" <?php if ( $poll->getStartDate() < time() && $id ) echo 'style="display:none;"'; ?> >&#xf068;</a>
 					
 				</div>
 				
@@ -98,15 +118,16 @@
 					</div>
                     
 					<label>Start date</label>
-					<input type="text" name="startDate" placeholder="mm/dd/yyyy" value="<?php if ( $id ) echo date('m/d/Y', $poll->getStartDate()); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'readonly="readonly"'; ?> >
+					<input type="text" name="startDate" placeholder="mm/dd/yyyy hh:mm" value="<?php if ( $id ) echo date('m/d/Y H:i', $poll->getStartDate()); ?>" <?php if ( $poll->getStartDate() < time() && $id ) echo 'readonly="readonly"'; ?> >
 					
 					<label>End date</label>
-					<input type="text" name="endDate" placeholder="mm/dd/yyyy" value="<?php if ( $id ) echo date('m/d/Y', $poll->getEndDate()); ?>">
+					<input type="text" name="endDate" placeholder="mm/dd/yyyy hh:mm" value="<?php if ( $id ) echo date('m/d/Y H:i', $poll->getEndDate()); ?>">
                     
                     <div class="alerts">
 						<label>Enable email alerts?</label>
 						<input type="radio" class="yes" name="alerts" value="1" <?php if ( $poll->getNotifyOwner() && $id ) echo 'checked'; ?> >
 						<input type="radio" class="no" name="alerts" value="0" <?php if ( !($poll->getNotifyOwner()) && $id ) echo 'checked'; ?> >
+						<cite>Info: to receive alerts, you should set your email address in your account settings</cite>
 					</div>
 					
 				</div>

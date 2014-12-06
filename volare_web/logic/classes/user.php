@@ -84,6 +84,30 @@
 			
 		}
 		
+		public static function withId( $id ) {
+			
+			
+			// Database connection
+			
+			global $dbh;
+			
+			
+			// Get User from database
+			
+			$stmt = $dbh->prepare('SELECT * FROM users WHERE id = ?');
+			$stmt->execute(array( $id ));
+			$userData = $stmt->fetch();
+						
+			
+			// Create new instance of class User
+			
+			$user = new User( $userData );
+			
+			
+			return $user;
+			
+		}
+		
 		public static function withUsername( $username ) {
 			
 			
